@@ -1,0 +1,33 @@
+@font-face {
+	font-family: 'TH SarabunPSK';
+	src: 
+		url('http://localhost/natkaset/fonts/THSarabun.eot');
+	src: 
+		url('http://localhost/natkaset/fonts/THSarabun.eot?') format('embedded-opentype'),
+		url('http://localhost/natkaset/fonts/THSarabun.woff') format('woff'),
+		url('http://localhost/natkaset/fonts/THSarabun.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*body{
+    font-family:'TH SarabunPSK',Sans-Serif;
+}*/
+
+h1,h2,h3,h4{
+    font-family:'TH SarabunPSK';
+    font-weight: normal;
+}
+
+.menu{
+    font-family:'TH SarabunPSK';
+    font-size: 22px
+}
+
+.text_white{
+	font-family:'TH SarabunPSK';
+    color: white;
+}
+
+
+
