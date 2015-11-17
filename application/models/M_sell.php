@@ -55,7 +55,7 @@
 
 	    function get_feed_new()
 	    {
-	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id ORDER BY nat_sell.sel_time_create DESC";
+	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id WHERE nat_sell.sel_status = 1 ORDER BY nat_sell.sel_time_create DESC";
 	    	$query = $this->db->query($sql);
 			return $query->result_array();
 	    }
