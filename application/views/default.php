@@ -20,6 +20,7 @@
 
     <link href="<?php echo base_url();?>css/fonts.css" rel="stylesheet"  >
     <link href="<?php echo base_url();?>css/ribbon.css" rel="stylesheet"  >
+    <link href="<?php echo base_url();?>css/menu.css" rel="stylesheet"  >
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 

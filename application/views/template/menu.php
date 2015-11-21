@@ -1,49 +1,60 @@
+<style>
+   a#colerfont {
+        color: #ffffff;
+        font-family:'TH SarabunPSK';
+        font-size: 22px
+    }
+    a:hover#colerfont, a:focus#colerfont {
+        color: #E26A8D;
+    }
+</style>
+
 <div id="sidebar-wrapper" style="position: fixed;">
-    <ul class="sidebar-nav">
-        <h1>menu</h1>
 
-        
+    <h1>menu</h1>           
 
-        <div class = "text-center">
-   
-                <img src="<?php echo base_url()?><?php echo $this->session->userdata('mem_pic')?>" class="img-circle" alt="Pic" width="30%" height="30%">
-          
+    <div class = "text-center">
+        <img src="<?php echo base_url()?><?php echo $this->session->userdata('mem_pic')?>" class="img-circle" alt="Pic" width="30%" height="30%">
+    </div>  
 
-        </div>  
+    <div class = "text-center">
+        <h3 class = "text_white"><b><?php echo $this->session->userdata('username');?></b></h3>
+    </div> 
 
-        <div class = "text-center">
-            <h3 class = "text_white"><b><?php echo $this->session->userdata('username');?></b></h3>
-        </div> 
+    <hr width='70%'>
+    
 
-        <hr width='70%'>
-
+      <ul class="nav navbar-nav " id="sidenav01">
         <li>
-            <a href="<?php echo base_url(); ?>index.php/sell/feed" class = "menu">ฟีดรายการสินค้า</a>
-        </li>
-        
-        <!--<li>
-            <font color="#FFF2DF"><p class = "menu">โพสต์สินค้า</p></font>
-        </li>
-        <li class = "menu">
-            <ul>
-              <li><a href="<?php //echo base_url(); ?>sell">ประกาศขายสินค้า</a></li>
-              <li><a href="#">Submenu 1-2</a></li>
+          <a href="#" data-toggle="collapse" data-target="#toggleDemo" class="collapsed" id="colerfont">
+          <span class="glyphicon glyphicon-cloud"></span>   ฟีดรายการสินค้า<span class="caret pull-right"></span>
+          </a>
+          <div class="collapse" id="toggleDemo" style="height: 0px;">
+            <ul class="nav nav-list">
+              <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ผลไม้</a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ผัก</a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">สัตว์เศษรฐกิจ</a>
+              </li>
+               <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ไม้ดอกไม้ประดับ</a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">พิชเศรษฐกิจ</a>
+              </li>
+              <li>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">สินค้าอื่นๆ</a>
+              </li>
             </ul>
-        </li>-->
-        <li>
-            <a href="<?php echo base_url(); ?>index.php/sell" class = "menu">ประกาศขายสินค้า</a>
+          </div>
         </li>
+        <li><a href="#" id="colerfont"><span class="glyphicon glyphicon-lock"></span> Normalmenu</a></li>
+        <li><a href="#" id="colerfont"><span class="glyphicon glyphicon-calendar"></span> WithBadges <span class="badge pull-right">42</span></a></li>
+        <li><a href="" id="colerfont"><span class="glyphicon glyphicon-cog"></span> PreferencesMenu</a></li>
+      </ul>
 
-        <li>
-            <a href="<?php echo base_url(); ?>index.php/sell/guide" class = "menu">แนะนำสินค้า</a>
-        </li>
-
-        <li>
-            <a href="<?php echo base_url(); ?>index.php/manage/sell" class = "menu">รายการสินค้าที่ประกาศขาย</a>
-        </li>
-
-
-
-
-    </ul>
-</div>                
+</div>
