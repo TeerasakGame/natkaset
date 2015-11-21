@@ -7,7 +7,7 @@
 
 </br>
 <h1>
-  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
   <font color="ED6188">
   <b>
     <?php

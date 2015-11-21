@@ -96,97 +96,84 @@ class Location extends CI_Controller {
 		return $distance;
 	}
 
-	public function distance($lat,$lng)
+	public function distance($lat,$lng,$cat_id=Null)
 	{
 		$this->load->model('M_sell','sell');
 
-		$data = $this->sell->get_feed_new();
+		if($cat_id == Null){
+			$data = $this->sell->get_feed_new();
+		}else{
+			//echo "55555";die();
+			$data = $this->sell->get_feed_cat_id($cat_id);
+
+		}
+		
 
 		//print_r($data);die;
 		
 		$new = array();
 
-		/*foreach ($data as $data) {
-			$distance = $this->get_distance($lat,$lng,$data['sel_lagitude'],$data['sel_longitude']);
-			//$distance = $this->distance_Server($lat,$lng,$data['sel_lagitude'],$data['sel_longitude']);
-			//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
-			$add = array(
-				'sel_id' => $data['sel_id'],
-				'sel_topic' => $data['sel_topic'],
-				'sel_explain' => $data['sel_explain'],
-				'sel_pic' => $data['sel_pic'],
-				'sel_price' => $data['sel_price'],
-				'sel_time_create' => $data['sel_time_create'],
-				'dis_val' => $distance['distance_value'],
-				//'dis_text' => $distance['distance_text'],
-				//'loc_name' => $loc_name['full_name'],
-				//'loc_amphoe' => $loc_name['amphoe'],
-				//'loc_changwat' => $loc_name['changwat'],
-				);
-			array_push($new,$add);
-		}*/
-
-		/*echo '<pre>';
-		print_r($new);
-		echo '</per>';*/
 		
+		if(count($data) > 0){
+			foreach ($data as $key => $row) {
+				$distance = $this->distance_1($lat,$lng,$row['sel_lagitude'],$row['sel_longitude']);
+				//$distance_a = $this->get_distance($lat,$lng,$row['sel_lagitude'],$row['sel_longitude']);
+				//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
+				$count = $this->sell->get_feed_like($row['sel_id']);
 
-		foreach ($data as $key => $row) {
-			$distance = $this->distance_1($lat,$lng,$row['sel_lagitude'],$row['sel_longitude']);
-			//$distance_a = $this->get_distance($lat,$lng,$row['sel_lagitude'],$row['sel_longitude']);
-			//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
-			$count = $this->sell->get_feed_like($row['sel_id']);
+				//print_r($count_like);die;
 
-			//print_r($count_like);die;
+				$add = array(
+					'sel_id' => $row['sel_id'],
+					'sel_topic' => $row['sel_topic'],
+					'sel_explain' => $row['sel_explain'],
+					'sel_pic' => $row['sel_pic'],
+					'sel_price' => $row['sel_price'],
+					'sel_time_create' => $row['sel_time_create'],
+					'sel_status' => $row['sel_status'],
+					'dis_val' => $distance,
+					//'dis_val' => $distance['distance_value'],
+					//'dis_text' => $distance_a['distance_text'],
+					//'loc_name' => $loc_name['full_name'],
+					//'loc_amphoe' => $loc_name['amphoe'],
+					//'loc_changwat' => $loc_name['changwat'],
+					'mem_pic' => $row['mem_pic'],
+					'mem_first_name' => $row['mem_first_name'],
+					'mem_last_name' => $row['mem_last_name'],
+					'sel_tambon' => $row['sel_tambon'],
+					'sel_amphoe' => $row['sel_amphoe'],
+					'sel_changwat' => $row['sel_changwat'],
+					'sel_promotion' => $row['sel_promotion'],
+					'count_like' => $count[0]['count_like'],
+					);
+				array_push($new,$add);
 
-			$add = array(
-				'sel_id' => $row['sel_id'],
-				'sel_topic' => $row['sel_topic'],
-				'sel_explain' => $row['sel_explain'],
-				'sel_pic' => $row['sel_pic'],
-				'sel_price' => $row['sel_price'],
-				'sel_time_create' => $row['sel_time_create'],
-				'sel_status' => $row['sel_status'],
-				'dis_val' => $distance,
-				//'dis_val' => $distance['distance_value'],
-				//'dis_text' => $distance_a['distance_text'],
-				//'loc_name' => $loc_name['full_name'],
-				//'loc_amphoe' => $loc_name['amphoe'],
-				//'loc_changwat' => $loc_name['changwat'],
-				'mem_pic' => $row['mem_pic'],
-				'mem_first_name' => $row['mem_first_name'],
-				'mem_last_name' => $row['mem_last_name'],
-				'sel_tambon' => $row['sel_tambon'],
-				'sel_amphoe' => $row['sel_amphoe'],
-				'sel_changwat' => $row['sel_changwat'],
-				'sel_promotion' => $row['sel_promotion'],
-				'count_like' => $count[0]['count_like'],
-				);
-			array_push($new,$add);
+			    //$dis_val[$key]  = $distance['distance_value'];
+			    $dis_val[$key]  = $distance;
+			    $time[$key] = $row['sel_time_create'];
+			    $count_like[$key] = $count[0]['count_like'];
+			}
 
-		    //$dis_val[$key]  = $distance['distance_value'];
-		    $dis_val[$key]  = $distance;
-		    $time[$key] = $row['sel_time_create'];
-		    $count_like[$key] = $count[0]['count_like'];
+			$data = $new;
+			$data_like = $new;
+			/*echo "<pre>";
+			print_r($new);die;*/
+
+			array_multisort($dis_val,SORT_ASC,$time,SORT_DESC,$new);
+
+			array_multisort($count_like,SORT_DESC,$time,SORT_DESC,$data_like);
+			//array_multisort($time,SORT_DESC,$new);
+
+			$data_feed = array($data,$new,$data_like);
+
+			//echo '</br>';
+			/*echo '<pre>';
+			print_r($new);
+			echo '</per>';*/
+			return $data_feed;
+		}else{
+			return false;
 		}
-
-		$data = $new;
-		$data_like = $new;
-		/*echo "<pre>";
-		print_r($new);die;*/
-
-		array_multisort($dis_val,SORT_ASC,$time,SORT_DESC,$new);
-
-		array_multisort($count_like,SORT_DESC,$time,SORT_DESC,$data_like);
-		//array_multisort($time,SORT_DESC,$new);
-
-		$data_feed = array($data,$new,$data_like);
-
-		//echo '</br>';
-		/*echo '<pre>';
-		print_r($new);
-		echo '</per>';*/
-		return $data_feed;
 		
 		
 	}

@@ -288,20 +288,27 @@ class Sell extends Location {
         }
     }
 
-    public function feed()
+    public function feed($cat_code=null)
     {
         $data['content_text'] = 'ฟีดรายการสินค้า';
-        $data['content_view'] = 'v_feed';
-        
-        $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
-        
-        //$data['feed_new'] = $this->sell->get_feed_new();
        
-        $data['feed_new'] = $data_feed[0];
-        $data['feed_distance'] = $data_feed[1];
-        $data['feed_like'] = $data_feed[2];
-        /*echo "<pre>";
-        print_r($data['feed_like']);die;*/
+        
+        if($cat_code == null){
+            $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
+        }else{
+            $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$cat_code);
+            //print_r($data_feed);die();
+        }
+
+        if($data_feed != FALSE){
+            $data['content_view'] = 'v_feed';
+            $data['feed_new'] = $data_feed[0];
+            $data['feed_distance'] = $data_feed[1];
+            $data['feed_like'] = $data_feed[2];
+        }else{
+            $data['content_view'] = 'v_feed_error';
+            $data['error'] = "ไม่มีรายการสินค้า";
+        }
 
         $this->load->view('default',$data);
     }

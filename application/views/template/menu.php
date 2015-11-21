@@ -26,35 +26,44 @@
 
       <ul class="nav navbar-nav " id="sidenav01">
         <li>
+             <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont"><span class="glyphicon glyphicon-home"></span>    หน้าแรก</a>
+        </li>
+        <li>
           <a href="#" data-toggle="collapse" data-target="#toggleDemo" class="collapsed" id="colerfont">
-          <span class="glyphicon glyphicon-cloud"></span>   ฟีดรายการสินค้า<span class="caret pull-right"></span>
+          <span class="glyphicon glyphicon-list"></span>   ฟีดรายการสินค้า<span class="caret pull-right"></span>
           </a>
           <div class="collapse" id="toggleDemo" style="height: 0px;">
             <ul class="nav nav-list">
               <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ผลไม้</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/10" id="colerfont">ผลไม้</a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ผัก</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/11" id="colerfont">ผัก</a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">สัตว์เศษรฐกิจ</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/12" id="colerfont">สัตว์เศษรฐกิจ</a>
               </li>
                <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">ไม้ดอกไม้ประดับ</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/13" id="colerfont">ไม้ดอกไม้ประดับ</a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">พิชเศรษฐกิจ</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/14" id="colerfont">พิชเศรษฐกิจ</a>
               </li>
               <li>
-                <a href="<?php echo base_url(); ?>index.php/sell/feed" id="colerfont">สินค้าอื่นๆ</a>
+                <a href="<?php echo base_url(); ?>index.php/sell/feed/15" id="colerfont">สินค้าอื่นๆ</a>
               </li>
             </ul>
           </div>
         </li>
-        <li><a href="#" id="colerfont"><span class="glyphicon glyphicon-lock"></span> Normalmenu</a></li>
-        <li><a href="#" id="colerfont"><span class="glyphicon glyphicon-calendar"></span> WithBadges <span class="badge pull-right">42</span></a></li>
-        <li><a href="" id="colerfont"><span class="glyphicon glyphicon-cog"></span> PreferencesMenu</a></li>
+        <li>
+             <a href="<?php echo base_url(); ?>index.php/sell" id="colerfont"><span class="glyphicon glyphicon-shopping-cart"></span>    ประกาศขายสินค้า</a>
+        </li>
+        <li>
+            <a href="<?php echo base_url(); ?>index.php/sell/guide" id="colerfont"><span class="glyphicon glyphicon-bullhorn"></span>   แนะนำสินค้า</a>
+        </li>
+        <li>
+            <a href="<?php echo base_url(); ?>index.php/manage/sell" id="colerfont"><span class="glyphicon glyphicon-cog"></span>   จัดการสินค้าที่ประกาศ</a>
+        </li>
       </ul>
 
 </div>

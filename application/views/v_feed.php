@@ -48,6 +48,7 @@ echo "</pre>";*/
     <div class="tab-content">
       <div class="tab-pane active " id="A">
         </br>
+        <?php if(isset($error) != null){ echo "<center><h1>--- ".$error." ---</h1><center>";}?>
         <?php foreach ($feed_new as $key) { ?>
             <div class="col-xs-12 well"  <?php if($key['sel_status'] == 0){echo 'id="b"';}else{echo 'id="a"';}?>>
                 <?php if($key['sel_promotion'] != null ){?>

@@ -60,10 +60,11 @@
 			return $query->result_array();
 	    }
 
-	    function get_feed_popular()
+	    function get_feed_cat_id($id)
 	    {
-	    	$sql = "";
+	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id WHERE cat_id LIKE '$id%' ORDER BY nat_sell.sel_time_create DESC";
 	    	$query = $this->db->query($sql);
+	    	//var_dump($query->result_array());die();
 			return $query->result_array();
 	    }
 
