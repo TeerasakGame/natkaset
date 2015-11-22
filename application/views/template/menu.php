@@ -7,6 +7,14 @@
     a:hover#colerfont, a:focus#colerfont {
         color: #E26A8D;
     }
+    .serch{
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    .btn-pink{
+    background-color: #E26A8D;
+    border-color: #E26A8D;
+    } 
 </style>
 
 <div id="sidebar-wrapper" style="position: fixed;">
@@ -22,7 +30,18 @@
     </div> 
 
     <hr width='70%'>
-    
+    <form action="<?php echo base_url();?>index.php/sell/feed" method="post" >
+    <div class="serch">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="ชื่อสินค้า" name="key"/>
+        <span class="input-group-btn">
+          <button class="btn btn-pink" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </div>
+  </form>
+      
+      <br>
 
       <ul class="nav navbar-nav " id="sidenav01">
         <li>
@@ -67,3 +86,12 @@
       </ul>
 
 </div>
+
+<script>
+ /* $("#search").click(function(){
+      
+    alert("555");
+  });*/
+
+
+</script>
