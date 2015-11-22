@@ -8,6 +8,7 @@ class Manage extends CI_Controller {
         parent::__construct();
         //load model
         $this->load->model('M_manage','manage');
+        $this->load->model('M_sell','sell');
            
     }
     public function sell()
@@ -40,7 +41,7 @@ class Manage extends CI_Controller {
     	}
     }
 
-      public function open_sel($sel_id)
+    public function open_sel($sel_id)
     {
     	//echo $sel_id;
     	$mem_id = $this->session->userdata('mem_id');
@@ -55,6 +56,16 @@ class Manage extends CI_Controller {
     	}else{
     		echo "ไม่มีสิทธิ์ปิดการขาย";
     	}
+    }
+
+    public function edit_sel()
+    {
+        $data['content_text'] = 'แก้ไขรายละเอียด "ชื่อสินค้า"';
+        $data['content_view'] = 'v_edit_sell';
+        $data['type'] = $this->sell->get_type();
+        $data['category'] = $this->sell->get_category();
+        $this->load->view('default',$data);
+
     }
 
 
