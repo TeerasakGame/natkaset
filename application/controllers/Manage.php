@@ -6,6 +6,9 @@ class Manage extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        if($this->session->userdata('logged_in') != TRUE){
+            redirect('auth/login');
+        }
         //load model
         $this->load->model('M_manage','manage');
         $this->load->model('M_sell','sell');
@@ -58,7 +61,7 @@ class Manage extends CI_Controller {
     	}
     }
 
-    public function edit_sel()
+    public function edit_sell($id)
     {
         $data['content_text'] = 'แก้ไขรายละเอียด "ชื่อสินค้า"';
         $data['content_view'] = 'v_edit_sell';
