@@ -46,10 +46,10 @@
             <li>ที่อยู่สินค้า : <?php echo $row['sel_tambon']." ".$row['sel_amphoe']." ".$row['sel_changwat']?></li>
           </ul>
         </td>
-        <td align = "center"><a>แก้ไข</a> | <?php if($row['sel_status']==1){?>
-          <a href="<?php echo base_url()?>index.php/manage/close_sel/<?php echo $row['sel_id']?>" OnClick='return chk();'>ปิดการขาย</a>
+        <td align = "center"><a >แก้ไข</a> | <?php if($row['sel_status']==1){?>
+          <a href="" data-toggle="modal" data-target="#del" data-id="<?php echo $row['sel_id']?>">ปิดการขาย</a>
           <?php }else{ ?>
-          <a href="<?php echo base_url()?>index.php/manage/open_sel/<?php echo $row['sel_id']?>" OnClick='return chkO();'>เปิดการขาย</a>
+          <a href="" data-toggle="modal" data-target="#open" data-id="<?php echo $row['sel_id']?>">เปิดการขาย</a>
           <?php } ?></td>
       </tr>
     <?php $i++ ;} ?>
@@ -58,6 +58,45 @@
 
 
 </div>
+
+        <div class="modal fade" id="del" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title"><b>ยืนยันปิดการขาย</b></h3>
+                    </div>
+                    <div class="modal-body">
+                      <center>คุณต้องการปิดการขาย<center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="close_sel" value="">ตกลง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="open" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title"><b>ยืนยันเปิดการขาย</b></h3>
+                    </div>
+                    <div class="modal-body">
+                      <center>คุณต้องการเปิดการขาย<center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="open_sel" value="">ตกลง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
 <script>
   function chk(){
@@ -74,4 +113,43 @@
       return false; // ถ้าตอบ Cancel ก็คือไม่ต้องทำอะไร 
       }
     }
+
+  $("#close_sel").click(function(){
+    var data = $(this).val();
+    var url = "<?php echo base_url()?>index.php/manage/close_sel/"+data;
+    //alert(url);
+    $.post(url,function(data){  
+      //alert("แจ้งเเมื่อทำการส่งข้อมูลเรียบร้อยแล้ว");  
+      location.reload();
+    });
+ 
+  });
+
+  $("#open_sel").click(function(){
+    var data = $(this).val();
+    var url = "<?php echo base_url()?>index.php/manage/open_sel/"+data;
+    //alert(url);
+    $.post(url,function(data){  
+      //alert("แจ้งเเมื่อทำการส่งข้อมูลเรียบร้อยแล้ว");  
+      location.reload();
+    });
+ 
+  });
+
+
+
+  $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
+
+    var data_id = '';
+
+    if (typeof $(this).data('id') !== 'undefined') {
+
+      data_id = $(this).data('id');
+    }
+
+    $('#close_sel').val(data_id);
+    $('#open_sel').val(data_id);
+
+  })
+
 </script>

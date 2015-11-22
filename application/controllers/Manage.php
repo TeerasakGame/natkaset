@@ -33,6 +33,8 @@ class Manage extends CI_Controller {
     				);
     		$this->manage->update_sell($sel_id,$data);
     		redirect('manage/sell');
+            //redirect('/account/login', 'refresh');
+
     	}else{
     		echo "ไม่มีสิทธิ์ปิดการขาย";
     	}
