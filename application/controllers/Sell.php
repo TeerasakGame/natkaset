@@ -288,16 +288,34 @@ class Sell extends Location {
         }
     }
 
-    public function feed($cat_code=null)
+    public function feed($key=Null)
     {
         $data['content_text'] = 'ฟีดรายการสินค้า';
-       
         
-        if($cat_code == null){
-            $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
-        }else{
-            $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$cat_code);
-            //print_r($data_feed);die();
+        
+        
+        if($key == Null){
+            $key = $this->input->post('key');
+            if($key == Null){
+                $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
+            }else{
+                if(is_numeric($key) == FALSE){
+                    $check = $this->sell->check_category_by_name($key);
+                    if($check != FALSE){
+                        $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$check[0]['cat_code']);
+                    }else{
+                        $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
+                    }
+                    
+                }else{
+                    $data_feed = FALSE;
+                }
+            }
+            
+        }else{ 
+            if(is_numeric($key) == TRUE){
+                $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
+            }
         }
 
         if($data_feed != FALSE){
@@ -307,7 +325,9 @@ class Sell extends Location {
             $data['feed_like'] = $data_feed[2];
         }else{
             $data['content_view'] = 'v_feed_error';
+            
             $data['error'] = "ไม่มีรายการสินค้า";
+            
         }
 
         $this->load->view('default',$data);

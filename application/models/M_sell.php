@@ -62,10 +62,20 @@
 
 	    function get_feed_cat_id($id)
 	    {
-	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id WHERE cat_id LIKE '$id%' ORDER BY nat_sell.sel_time_create DESC";
+	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id WHERE nat_sell.cat_id LIKE '$id%' AND nat_sell.sel_status = 1 ORDER BY nat_sell.sel_time_create DESC";
 	    	$query = $this->db->query($sql);
 	    	//var_dump($query->result_array());die();
 			return $query->result_array();
+	    }
+
+	    function get_feed_name($name)
+	    {
+	    	$sql = "SELECT * FROM nat_sell JOIN nat_member ON nat_member.mem_id = nat_sell.mem_id WHERE nat_sell.sel_topic LIKE '%$name%' AND nat_sell.sel_status = 1 ORDER BY nat_sell.sel_time_create DESC";
+	    	$query = $this->db->query($sql);
+	    	//echo $sql."<br>";
+	    	//var_dump($query->result_array());die();
+			return $query->result_array();
+
 	    }
 
 	    function get_detail($id)
@@ -157,6 +167,18 @@
 					ORDER BY count_like DESC";
 	    	$query = $this->db->query($sql,array($sel_id));
 	    	return $query->result_array();
+	    }
+
+	    function check_category_by_name($name)
+	    {
+	    	$sql = "SELECT * FROM nat_category WHERE cat_name = ? LIMIT 1";
+	    	$query = $this->db->query($sql,array($name));
+	    	if($query->num_rows() > 0){
+	    		//return true;
+	    		return $query->result_array();
+	    	}else{
+	    		return false;
+	    	}
 	    }
 	    
 	}
