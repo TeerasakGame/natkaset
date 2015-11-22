@@ -125,7 +125,7 @@ class Auth extends CI_Controller {
 
 				$this->session->set_userdata($newdata);
 
-				redirect('home');
+				redirect('sell/feed');
 			}
 
 		}	
@@ -198,7 +198,7 @@ class Auth extends CI_Controller {
 
 						$this->session->set_userdata($newdata);
 
-	                	redirect('home');
+	                	redirect('sell/feed');
 					}else{
 						$Path = 'image_profile';                  
                 		$filenameDB = $Path.'/'.date('Ymd').'_'.uniqid(date('Hms')).'_'.$data['id'].'.png';
@@ -243,7 +243,7 @@ class Auth extends CI_Controller {
 
 						$this->session->set_userdata($newdata);
 
-						redirect('home');
+						redirect('sell/feed');
 					} 
 	            }catch (FacebookApiException $e) {
 	                $user = null;
