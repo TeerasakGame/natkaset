@@ -96,16 +96,19 @@ class Location extends CI_Controller {
 		return $distance;
 	}
 
-	public function distance($lat,$lng,$cat_id=Null)
+	public function distance($lat,$lng,$key_name=Null)
 	{
 		$this->load->model('M_sell','sell');
 
-		if($cat_id == Null){
+		if($key_name == Null){
 			$data = $this->sell->get_feed_new();
 		}else{
 			//echo "55555";die();
-			$data = $this->sell->get_feed_cat_id($cat_id);
-
+			if(is_numeric($key_name) == TRUE ){
+                $data = $this->sell->get_feed_cat_id($key_name);
+            }else{
+                $data = $this->sell->get_feed_name($key_name);
+            }
 		}
 		
 
