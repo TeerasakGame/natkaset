@@ -48,7 +48,7 @@ echo "</pre>";*/
     <div class="tab-content">
       <div class="tab-pane active " id="A">
         </br>
-        <?php if(isset($error) != null){ echo "<center><h1>--- ".$error." ---</h1><center>";}?>
+      
         <?php foreach ($feed_new as $key) { ?>
             <div class="col-xs-12 well"  <?php if($key['sel_status'] == 0){echo 'id="b"';}else{echo 'id="a"';}?>>
                 <?php if($key['sel_promotion'] != null ){?>
@@ -181,7 +181,7 @@ echo "</pre>";*/
                 <div class="ribbon"><span>โปรโมชั่น</span></div>
                 <?php } ?>
                 <div class="col-md-4" id="pic">
-                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"  width="100%" height="250" ></a></center>
+                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"  height="250" ></a></center>
                 </div>
 
                 <div class="col-md-8">
@@ -251,7 +251,7 @@ echo "</pre>";*/
                 <div class="ribbon"><span>โปรโมชั่น</span></div>
                 <?php } ?>
                 <div class="col-md-4" id="pic">
-                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"  width="100%" height="250" ></a></center>
+                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>" height="250" ></a></center>
                 </div>
 
                 <div class="col-md-8">
@@ -313,3 +313,61 @@ echo "</pre>";*/
 
     </div><!-- tab content -->
   </div><!-- tab -->
+
+<script>
+    if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(position){
+                //alert(position.coords.latitude+"  "+position.coords.longitude);
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                $("#lat").val(latitude);
+                $("#lon").val(longitude);
+
+                $.ajax({
+            url:"<?php echo base_url()?>index.php/home/test",
+            data:"lat="+latitude+"&log="+longitude,
+            type:"POST",
+            //dataTypr:"json",
+            success:function(res){
+              //alert(res);
+            },
+            error:function(err){
+
+            }
+           });  
+
+            },function() {
+                // คำสั่งทำงาน ถ้า ระบบระบุตำแหน่ง geolocation ผิดพลาด หรือไม่ทำงาน
+               // alert('ไม่สามารถระบุตำแหน่งปัจจุบันของคุณได้ ระบบจะระบุตำแหน่งที่ "อนุสาวรีชัยสมรภูมิ"');
+                $.ajax({
+                    url:"<?php echo base_url()?>index.php/home/test",
+                    data:"lat="+13.765205+"&log="+100.538306,
+                    type:"POST",
+                    //dataTypr:"json",
+                    success:function(res){
+                        //alert(res);
+                    },
+                    error:function(err){
+
+                    }
+                 });
+            });
+    }else{
+        // คำสั่งทำงาน ถ้า บราวเซอร์ ไม่สนับสนุน ระบุตำแหน่ง
+        ///alert('ไม่สามารถระบุตำแหน่งปัจจุบันของคุณได้ ระบบจะระบุตำแหน่งที่ "อนุสาวรีชัยสมรภูมิ"');
+                $.ajax({
+                    url:"<?php echo base_url()?>index.php/home/test",
+                    data:"lat="+13.765205+"&log="+100.538306,
+                    type:"POST",
+                    //dataTypr:"json",
+                    success:function(res){
+                        //alert(res);
+                    },
+                    error:function(err){
+
+                    }
+                 });
+    }
+  
+    
+</script>
