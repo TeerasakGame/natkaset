@@ -180,6 +180,18 @@
 	    		return false;
 	    	}
 	    }
+
+	    function get_comment($sel_id)
+	    {
+	    	$sql = "SELECT * FROM nat_comment JOIN nat_member ON nat_comment.mem_id = nat_member.mem_id WHERE nat_comment.sel_id = ? ORDER BY nat_comment.com_create ASC";
+	    	$query = $this->db->query($sql,array($sel_id));
+	    	return $query->result_array();
+	    }
+
+	    function insert_comment($data)
+	    {
+	    	$this->db->insert('nat_comment', $data); 
+	    }
 	    
 	}
 ?>

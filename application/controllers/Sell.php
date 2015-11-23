@@ -343,6 +343,7 @@ class Sell extends Location {
         $data['contact'] = $this->sell->get_contact($data['detail']['0']['mem_id']);
         $data['resemble'] = $this->sell->get_resemble($data['detail']['0']['sel_id'],$data['detail']['0']['cat_id']);
         $data['like'] = $this->sell->get_like($id,$this->session->userdata('mem_id'));
+        $data['comment'] = $this->sell->get_comment($data['detail']['0']['sel_id']);
         //print_r($data['like']);die;
         $data['count_like'] = $this->sell->get_count_like($data['detail']['0']['sel_id']); 
         $this->load->view('default',$data);
@@ -405,6 +406,61 @@ class Sell extends Location {
                 $data['src'] = 'upload/img/Like Filled-32.png';
                echo $count_like[0]["count_like"];
             }
+        }
+    }
+
+    public function add_comment()
+    {
+        $sel_id = $this->input->post('sel_id');
+        $message = $this->input->post('message');
+        $mem_id = $this->session->userdata('mem_id');
+        //echo $message." ".$mem_id." ".$sel_id;
+        $data = array(
+            'com_message' => $message,
+            'mem_id' => $mem_id,
+            'sel_id' => $sel_id,
+            'com_create' => date("Y-m-d H:i:s"),
+            );
+
+        $this->sell->insert_comment($data);
+
+        $comment = $this->sell->get_comment($sel_id);
+
+        //echo json_encode($comment);
+        foreach ($comment as $key) {
+            echo '<li class="media">';
+            echo '<div class="media-body">';
+            echo '<div class="media">';
+            echo '<a class="pull-left" href="#">';
+            echo '<img class="media-object img-circle " src="';echo base_url($key["mem_pic"]).'" />';
+            echo '</a>';
+            echo '<div class="media-body" >';
+            echo $key["com_message"];
+            echo '<br/>';
+            echo '<small class="text-muted">'.$key["mem_first_name"].' '.$key["mem_last_name"].' | '.date("H:m น., d F Y ",strtotime($key["com_create"])).'</small>';
+            echo '<hr/></div></div></div></li>';
+        }
+
+
+    }
+
+    public function get_comment()
+    {
+        $sel_id = $this->input->post('sel_id');
+        $comment = $this->sell->get_comment($sel_id);
+        //echo json_encode($comment);
+        foreach ($comment as $key) {
+            echo '<li class="media">';
+            echo '<div class="media-body">';
+            echo '<div class="media">';
+            echo '<a class="pull-left" href="#">';
+            echo '<img class="media-object img-circle " src="';echo base_url($key["mem_pic"]).'" />';
+            echo '</a>';
+            echo '<div class="media-body" >';
+            echo $key["com_message"];
+            echo '<br/>';
+            echo '<small class="text-muted">'.$key["mem_first_name"].' '.$key["mem_last_name"].' | '.date("H:m น., d F Y ",strtotime($key["com_create"])).'</small>';
+            echo '<hr/></div></div></div></li>';
         }
     }
 

@@ -23,12 +23,12 @@
 <div class="row">
 	<div class="col-md-5">
 	    <div class="thumbnail">
-		    <h2>
+		    <font color="ED6188"><h2>
 		      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 		      <b>
 		        รายละเอียดสินค้า
 		      </b>
-		    </h2>
+		    </h2></font>
 		    <div class="container-fluid">
 	  		<div class="form-group" >
 			    <h3><label>ประเภทสินค้าที่ประกาศขาย</label></h3>
@@ -93,12 +93,12 @@
 	    <div class="row">
 	    <div class="col-md-12">
 		    <div class="thumbnail">
-			    <h2>
+			    <font color="ED6188"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 			      <b>
 			        รูปสินค้า
 			      </b>
-			    </h2>
+			    </h2></font>
 			    <div class="container-fluid">
 			    	<div class="row">
 					    <div class="col-md-4">
@@ -129,12 +129,12 @@
 		</div>
 		<div class="col-md-12">
 		    <div class="thumbnail">
-			    <h2>
+			    <font color="ED6188"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 			      <b>
 			        ที่อยู่สินค้า
 			      </b>
-			    </h2>
+			    </h2></font>
 			    <div class="container-fluid">
 		    		<center><div id="map_canvas"></div></center>
 		    	</div><br>
@@ -175,7 +175,7 @@ function initialize() { // ฟังก์ชันแสดงแผนที�
 				var my_DivObj=$("#map_canvas")[0]; 
 				// กำหนด Option ของแผนที่
 				var myOptions = {
-					zoom: 15, // กำหนดขนาดการ zoom
+					zoom: 12, // กำหนดขนาดการ zoom
 					center: my_Latlng , // กำหนดจุดกึ่งกลาง
 					mapTypeId:my_mapTypeId // กำหนดรูปแบบแผนที่
 				};

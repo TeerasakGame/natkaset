@@ -216,48 +216,36 @@
         <div class="col-md-12">
           <div class="panel panel">
             <div class="panel-body">
-              <ul class="media-list">
-
+              <ul class="media-list" id="add_comment">
+                <?php foreach ($comment as $key) { ?>
                 <li class="media">
                   <div class="media-body">
                     <div class="media">
                       <a class="pull-left" href="#">
-                          <img class="media-object img-circle " src="<?php echo base_url();?>upload/img/user.jpg" />
+                          <img class="media-object img-circle " src="<?php echo base_url($key['mem_pic']);?>" />
                       </a>
                       <div class="media-body" >
-                          Testttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+                          <?php echo $key['com_message'];?>
                           <br />
-                         <small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>
+                         <small class="text-muted"><?php echo $key['mem_first_name']." ".$key['mem_last_name']." | ".date("H:m น., d F Y ",strtotime($key['com_create']));?></small>
                           <hr />
                       </div>
                     </div>
                   </div>
                 </li>
-                <li class="media">
-                  <div class="media-body">
-                    <div class="media">
-                      <a class="pull-left" href="#">
-                          <img class="media-object img-circle " src="<?php echo base_url();?>upload/img/user.jpg" />
-                      </a>
-                      <div class="media-body" >
-                          Test2
-                          <br />
-                         <small class="text-muted">Alex Deo | 23rd June at 5:00pm</small>
-                          <hr />
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                <?php } ?>
 
               </ul>
             </div>
             <div class="panel-footer">
+              <!--<form action="<?php echo base_url()?>index.php/sell/add_comment/<?php// echo $detail[0]['sel_id']?>" method="post">-->
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Enter Message" />
+                <input type="text" class="form-control" placeholder="ความคิดเห็น" name="message" id="message" value=""/>
                 <span class="input-group-btn">
-                  <button class="btn btn-info" type="button">SEND</button>
+                  <button class="btn btn-info" type="button" id="comment">ส่ง</button>
                 </span>
               </div>
+            <!--</form>-->
             </div>
         </div>
     </div>
@@ -501,6 +489,40 @@
         }
        
     });
+
+  $("#comment").click(function(){
+    //alert(555);
+    var message = $("#message").val();
+    $.ajax({
+            url:"<?php echo base_url('index.php/sell/add_comment')?>",
+            data:"sel_id="+"<?php echo $detail[0]['sel_id']?>"+"&message="+message,
+            type:"POST",
+            success:function(res){
+              //alert(res);
+              $("#add_comment").html(res);
+              $("#message").val("");
+            },
+            error:function(err){
+
+            }
+          });
+  });
+
+  $(function(){  
+    setInterval(function(){ // เขียนฟังก์ชัน javascript ให้ทำงานทุก ๆ 30 วินาที  
+        // 1 วินาที่ เท่า 1000  
+        // คำสั่งที่ต้องการให้ทำงาน ทุก ๆ 3 วินาที  
+        $.ajax({ // ใช้ ajax ด้วย jQuery ดึงข้อมูลจากฐานข้อมูล  
+                url:"<?php echo base_url('index.php/sell/get_comment')?>", 
+                data:"sel_id="+"<?php echo $detail[0]['sel_id']?>", 
+                type:"POST",  
+                success:function(getData){  
+                   // alert(getData);
+                    $("#add_comment").html(getData); // ส่วนที่ 3 นำข้อมูลมาแสดง  
+                }  
+        }).responseText;  
+    },2000);      
+  }); 
 
 
 </script>
