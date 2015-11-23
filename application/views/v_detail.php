@@ -12,6 +12,13 @@
     margin-top:15px;
   }
 
+  #scorebar {
+   /* background-color: #00FFFF;*/
+  
+    height: 500px;
+    overflow:auto;
+}
+
 </style>
 
 </br>
@@ -203,7 +210,7 @@
   </div>
 
   <div class="col-md-5">
-    <div class="thumbnail">
+    <div class="thumbnail" >
       <h1>
       <img src="<?php echo base_url();?>upload/img/Comments-50.png">
       <font color="ED6188">
@@ -215,7 +222,7 @@
       <div class="row" >
         <div class="col-md-12">
           <div class="panel panel">
-            <div class="panel-body">
+            <div class="panel-body" id="scorebar">
               <ul class="media-list" id="add_comment">
                 <?php foreach ($comment as $key) { ?>
                 <li class="media">
