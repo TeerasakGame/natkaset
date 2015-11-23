@@ -15,7 +15,7 @@
   #scorebar {
    /* background-color: #00FFFF;*/
   
-    height: 500px;
+    height: auto;
     overflow:auto;
 }
 
@@ -224,6 +224,7 @@
           <div class="panel panel">
             <div class="panel-body" id="scorebar">
               <ul class="media-list" id="add_comment">
+                <?php if($comment == Null){echo "<br><center><h1>--- ไม่มีความคิดเห็น ---</h1></center>";}?>
                 <?php foreach ($comment as $key) { ?>
                 <li class="media">
                   <div class="media-body">
@@ -498,9 +499,10 @@
     });
 
   $("#comment").click(function(){
-    //alert(555);
     var message = $("#message").val();
-    $.ajax({
+    //alert(message);
+    if(message != ""){
+          $.ajax({
             url:"<?php echo base_url('index.php/sell/add_comment')?>",
             data:"sel_id="+"<?php echo $detail[0]['sel_id']?>"+"&message="+message,
             type:"POST",
@@ -513,6 +515,8 @@
 
             }
           });
+    }
+    
   });
 
   $(function(){  

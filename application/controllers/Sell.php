@@ -448,8 +448,10 @@ class Sell extends Location {
     {
         $sel_id = $this->input->post('sel_id');
         $comment = $this->sell->get_comment($sel_id);
-        //echo json_encode($comment);
-        foreach ($comment as $key) {
+        if($comment == Null){
+            echo "<br><center><h1>--- ไม่มีความคิดเห็น ---</h1></center>";
+        }else{
+            foreach ($comment as $key) {
             echo '<li class="media">';
             echo '<div class="media-body">';
             echo '<div class="media">';
@@ -462,6 +464,8 @@ class Sell extends Location {
             echo '<small class="text-muted">'.$key["mem_first_name"].' '.$key["mem_last_name"].' | '.date("H:m น., d F Y ",strtotime($key["com_create"])).'</small>';
             echo '<hr/></div></div></div></li>';
         }
+        }
+        
     }
 
 

@@ -102,24 +102,27 @@
 			    <div class="container-fluid">
 			    	<div class="row">
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="100"/></center>
-							<input type="file" id="my_file" style="display: none;" />
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic1"/></center>
+							<input type="file" id="my_file" style="display: none;" name="pic[]" />
 					    </div>
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="100"/></center>
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic2"/></center>
+					    	<input type="file" id="my_file2" style="display: none;" name="pic[]" />
 					    </div>
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="100"/></center>
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic3"/></center>
+					    	<input type="file" id="my_file3" style="display: none;" name="pic[]" />
 					    </div>
 				    </div>
 				    <div class="row">
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="100"/></center>
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic4"/></center>
+					    	<input type="file" id="my_file4" style="display: none;" name="pic[]" />
 					    </div>
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="100"/></center>
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="" height="100" id="pic5"/></center>
+					    	<input type="file" id="my_file5" style="display: none;" name="pic[]" />
 					    </div>
-					  
 				    </div>
 				   
 				     
@@ -148,8 +151,54 @@
 </div>
 
 <script>
-	$("input[type='image']").click(function() {
+	/*$("input[type='image']").click(function() {
     	$("input[id='my_file']").click();
+	});**/
+	$("#pic1").click(function() {
+    	$("input[id='my_file']").click();
+	});
+
+	$("#pic2").click(function() {
+    	$("input[id='my_file2']").click();
+	});
+
+	$("#pic3").click(function() {
+    	$("input[id='my_file3']").click();
+	});
+
+	$("#pic4").click(function() {
+    	$("input[id='my_file4']").click();
+	});
+
+	$("#pic5").click(function() {
+    	$("input[id='my_file5']").click();
+	});
+
+	$("#my_file").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		//alert(value);
+		if(value != null){
+			$("#pic1").attr("src", value);
+		}
+	});
+	$("#my_file2").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic2").attr("src", value);
+	});
+
+	$("#my_file3").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic3").attr("src", value);
+	});
+
+	$("#my_file4").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic4").attr("src", value);
+	});
+
+	$("#my_file5").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic5").attr("src", value);
 	});
 </script>
 
