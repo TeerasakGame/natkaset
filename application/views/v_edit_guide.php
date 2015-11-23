@@ -65,23 +65,6 @@
 			</div>
 
 			<div class="form-group">
-		    	<h3><label>ประเภทการประกาศขาย</label></h3>
-		    	<div class="input-group col-xs-12">
-		    	<?php foreach ($type->result_array() as $row) { ?>
-		    		<label class="radio-inline" >
-		    			<?php if($row['typ_id'] == $sell[0]['typ_id']){?>
-			    			<input type="radio" data-toggle="tooltip" data-placement="auto" title="<?php echo $row['typ_explan'];?>" value="<?php echo $row['typ_id'];?>" name="type" checked="checked" required>
-			    			<?php echo $row['typ_name'];?>
-		    			<?php }else{?>
-			    			<input type="radio" data-toggle="tooltip" data-placement="auto" title="<?php echo $row['typ_explan'];?>" value="<?php echo $row['typ_id'];?>" name="type"  required>
-			    			<?php echo $row['typ_name'];?>
-		    			<?php } ?>
-		    		</label>
-		    	<?php } ?>
-				</div>
-			</div>
-
-			<div class="form-group">
 		    	<h3><label>รายละเอียดสินค้า</label></h3>
 		   		<textarea class="form-control" rows="5" placeholder="อธิบายเกี่ยวกับ ขนาด ลักษณะ หรืออื่นๆที่สื่อถึงสินค้า" name="explan" required><?php echo $sell[0]['sel_explain']; ?></textarea>
 			</div>
@@ -98,36 +81,6 @@
 	    </div>
 	    </div>
 
-	    <div class="col-md-12">
-		    <div class="thumbnail">
-			    <font color="ED6188"><h2>
-			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
-			      <b>
-			        โปรโมชั่น
-			      </b>
-			    </h2></font>
-			    <div class="container-fluid">
-			    	<div class="form-group">
-                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
-                          	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"><?php echo $sell[0]['sel_promotion']; ?></textarea>
-                        </div>
-                        <div class="form-group">
-                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
-                           	<div class="row">
-                           		<div class="col-xs-5">
-                           			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
-	                       			</div>
-	                       		<div class="col-xs-1">
-	                       			<center><b> ถึง </b></center>
-	                       		</div>
-	                       		<div class="col-xs-5">
-	                       				<input type="date" class="form-control" name="pro_end" min="<?php echo date('Y-m-d'); ?>">
-	                       		</div>
-                       		</div>
-                       	</div>
-		    	</div>
-		    </div>
-		</div>
 </div>
 	 </div>
 
@@ -197,13 +150,7 @@
 			    </h2></font>
 		
 			    <div class="container-fluid">
-			    	<div class="form-group">
-		    
-					    <div class="input-group col-xs-12">
-						  	<label class="radio-inline"><input type="radio" name="address" id ="new_address" value="1" checked>กำหนดพื้นที่สินค้า</label>
-							<label class="radio-inline"><input type="radio" name="address" id ="address" value="0">ปัจจุบัน</label>
-						</div>
-					</div>
+
 		    		<div class="form-group" id="map">
 						<center><div id="map_canvas"></div></center>
 						<input name="lat_value" class="form-control" type="hidden" id="lat_value" value="<?php echo $sell[0]['sel_lagitude'] ;?>" >   
@@ -216,6 +163,8 @@
 	 </div>
 	</div>
 	<input name="sel_id" type="hidden" value="<?php echo $sell[0]['sel_id'] ;?>" >
+	<input name="type" type="hidden" value="3" >
+	<input name="address" type="hidden" value="1" >
 	<div class="container-fluid">
 		<button type="submit" class="btn btn-success btn-block" id="">แก้ไขสินค้า</button>
 	</div>
