@@ -26,7 +26,7 @@ class Sell extends Location {
         //set page view
         $data['content_text'] = 'ประกาศขายสินค้า';
         $data['content_view'] = 'v_sell';
-
+        //$data['content_view'] = 'v_edit_sell';
         //call funtion in model for get TYPE
         $data['type'] = $this->sell->get_type();
         $data['category'] = $this->sell->get_category();
@@ -45,6 +45,8 @@ class Sell extends Location {
         $pro_end = $this->input->post('pro_end');
         $lat = $this->input->post('lat_value');
         $lon = $this->input->post('lon_value');
+
+
 
         //print_r($type); die;
 
@@ -102,20 +104,6 @@ class Sell extends Location {
            // print_r($data);
 
             $sel_id = $this->sell->add_sell($data);
-
-           // echo $sel_id;
-            /*
-            echo "cate cate2:".$cate."  ".$cate2;
-            echo "topic:".$topic;
-            echo "type:".$type;
-            echo "explan:".$explan;
-            echo "price:".$price;
-            echo "address:".$address;
-            echo "promotion:".$promotion;
-            echo "pro_start:".$pro_start;
-            echo "pro_end:".$pro_end."     ";
-            echo "log/la".$lat."  ".$lon;*/
-           // echo count($_FILES["pic"]);
 
             $num = count($_FILES["pic"]["name"]);
             //echo "pic:".$num;
@@ -187,7 +175,7 @@ class Sell extends Location {
 
         //var_dump($data); die;
         echo '
-            <label>ประเภทย่อย(ชนิดของสินค้า)</label>
+           <br> <label>ประเภทย่อย(ชนิดของสินค้า)</label>
             <select id="cate2" class="form-control" name="cate2" required>
                 <option value="">---กรุณาเลือก---</option>';
                 foreach ($data as $row) { 
@@ -200,7 +188,8 @@ class Sell extends Location {
 
     public function guide(){
         $data['content_text'] = 'แนะนำสินค้า';
-        $data['content_view'] = 'v_guide';
+        //$data['content_view'] = 'v_guide';
+        $data['content_view'] = 'v_sell2';
 
         //call funtion in model for get TYPE
         $data['type'] = $this->sell->get_type();
@@ -229,7 +218,9 @@ class Sell extends Location {
         }else{
             $mem_id = $this->session->userdata('mem_id');
 
-            $name_address = $this->get_name_latlng($lagitude,$longitude);
+
+
+            $name_address = $this->get_name_latlng($lat,$lon);
 
             $tambon = $name_address['tambon'];
             $amphoe = $name_address['amphoe'];
@@ -466,6 +457,16 @@ class Sell extends Location {
         }
         }
         
+    }
+
+    public function update_sell()
+    {
+       // echo "string";
+       // $pic = $this->input->post('pic');
+        //print_r($pic);
+
+       
+
     }
 
 

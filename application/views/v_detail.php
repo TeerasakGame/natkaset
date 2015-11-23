@@ -13,9 +13,8 @@
   }
 
   #scorebar {
-   /* background-color: #00FFFF;*/
-  
-    height: auto;
+   /*background-color: #00FFFF;*/
+    height: 450px;
     overflow:auto;
 }
 
@@ -223,7 +222,7 @@
         <div class="col-md-12">
           <div class="panel panel">
             <div class="panel-body" id="scorebar">
-              <ul class="media-list" id="add_comment">
+              <ul class="media-list" id='add_comment'>
                 <?php if($comment == Null){echo "<br><center><h1>--- ไม่มีความคิดเห็น ---</h1></center>";}?>
                 <?php foreach ($comment as $key) { ?>
                 <li class="media">

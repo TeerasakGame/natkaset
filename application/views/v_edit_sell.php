@@ -19,9 +19,11 @@
 	?> 
 	</b></font>
 </h1>
-
+<form action="<?php echo base_url('index.php/sell')?>" method="post" enctype="multipart/form-data">
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-6">
+		<div class="row">
+		<div class="col-md-12">
 	    <div class="thumbnail">
 		    <font color="ED6188"><h2>
 		      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
@@ -37,19 +39,15 @@
 						<label>ประเภทหลัก(ตลาดที่จะวางขาย)</label>
 				        <select id="cate" class="form-control col-xs-10" name="cate" required>
 				        	<option value="">---กรุณาเลือก---</option>
-				          	
-						    	<option value=""></option>
+						    <?php foreach ($category->result_array() as $row) { ?>
+					    		<option value="<?php echo $row['cat_code'];?>"><?php echo $row['cat_name']?></option>
+					    	<?php } ?>
 						 
 				        </select>
 			  		</div>
-			  		<div class="col-xs-12"><br>
-						<label>ประเภทหลัก(ตลาดที่จะวางขาย)</label>
-				        <select id="cate" class="form-control col-xs-10" name="cate" required>
-				        	<option value="">---กรุณาเลือก---</option>
-				          	
-						    	<option value=""></option>
-						 
-				        </select>
+			  		
+			  		<div class="col-xs-12" id="div_cate">
+						
 			  		</div>
 			  		
 		  		</div>
@@ -87,10 +85,45 @@
 
 	    </div>
 	    </div>
+	    </div>
+
+	    <div class="col-md-12">
+		    <div class="thumbnail">
+			    <font color="ED6188"><h2>
+			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+			      <b>
+			        โปรโมชั่น
+			      </b>
+			    </h2></font>
+			    <div class="container-fluid">
+			    	<div class="form-group">
+                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
+                          	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"></textarea>
+                        </div>
+                        <div class="form-group">
+                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
+                           	<div class="row">
+                           		<div class="col-xs-5">
+                           			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
+	                       			</div>
+	                       		<div class="col-xs-1">
+	                       			<center><b> ถึง </b></center>
+	                       		</div>
+	                       		<div class="col-xs-5">
+	                       				<input type="date" class="form-control" name="pro_end" min="<?php echo date('Y-m-d'); ?>">
+	                       		</div>
+                       		</div>
+                       	</div>
+		    	</div>
+		    </div>
+		</div>
+</div>
 	 </div>
 
-	 <div class="col-md-7">
+	 <div class="col-md-6">
 	    <div class="row">
+	    
+
 	    <div class="col-md-12">
 		    <div class="thumbnail">
 			    <font color="ED6188"><h2>
@@ -100,10 +133,10 @@
 			      </b>
 			    </h2></font>
 			    <div class="container-fluid">
-			    	<div class="row">
+			    	<!--<div class="row">
 					    <div class="col-md-4">
-					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic1"/></center>
-							<input type="file" id="my_file" style="display: none;" name="pic[]" />
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic1" required/></center>
+							<input type="file" id="my_file"  style="display: none;" name="pic[]"/>
 					    </div>
 					    <div class="col-md-4">
 					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic2"/></center>
@@ -123,9 +156,22 @@
 					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="" height="100" id="pic5"/></center>
 					    	<input type="file" id="my_file5" style="display: none;" name="pic[]" />
 					    </div>
-				    </div>
+				    </div>-->
 				   
-				     
+				     <div id="items_pic">
+			<div class="row form-group">
+				<p id ="pic_radio" class="col-xs-1">
+					<input type="radio" name="pic_num" value="0" checked required>
+				</p>
+				<!--<p id="show_pic" class="col-xs-2"></p>-->
+				<p class="col-xs-6">
+					 <input type="file" accept="image/png, image/jpeg, image/gif" name="pic[]" id="pic" required>
+				</p>
+				<p class="col-xs-3">
+					<button type="button" class="btn btn-info" id="add_pic">เพิ่มรูป</button>
+				</p>
+			</div>
+		</div>
 				</div>
 		    
 		    </div>
@@ -138,40 +184,53 @@
 			        ที่อยู่สินค้า
 			      </b>
 			    </h2></font>
+		
 			    <div class="container-fluid">
-		    		<center><div id="map_canvas"></div></center>
+			    	<div class="form-group">
+		    
+					    <div class="input-group col-xs-12">
+						  	<label class="radio-inline"><input type="radio" name="address" id ="new_address" value="1" checked>กำหนดพื้นที่สินค้า</label>
+							<label class="radio-inline"><input type="radio" name="address" id ="address" value="0">ปัจจุบัน</label>
+						</div>
+					</div>
+		    		<div class="form-group" id="map">
+						<center><div id="map_canvas"></div></center>
+						<input name="lat_value" class="form-control" type="hidden" id="lat_value" value="<?php echo $this->session->userdata('lat') ;?>" >   
+        				<input name="lon_value" class="form-control" type="hidden" id="lon_value" value="<?php echo $this->session->userdata('log') ;?>" >
+					</div>
 		    	</div><br>
+		    	
 		    </div>
 		</div>
 	 </div>
 	</div>
 	<div class="container-fluid">
-		<button type="submit" class="btn btn-success btn-block">ขายสินค้า</button>
+		<button type="submit" class="btn btn-success btn-block" id="">ขายสินค้า</button>
 	</div>
 </div>
-
+</form>
 <script>
 	/*$("input[type='image']").click(function() {
     	$("input[id='my_file']").click();
 	});**/
 	$("#pic1").click(function() {
-    	$("input[id='my_file']").click();
+    	$("#my_file").click();
 	});
 
 	$("#pic2").click(function() {
-    	$("input[id='my_file2']").click();
+    	$("#my_file2").click();
 	});
 
 	$("#pic3").click(function() {
-    	$("input[id='my_file3']").click();
+    	$("#my_file3").click();
 	});
 
 	$("#pic4").click(function() {
-    	$("input[id='my_file4']").click();
+    	$("#my_file4").click();
 	});
 
 	$("#pic5").click(function() {
-    	$("input[id='my_file5']").click();
+    	$("#my_file5").click();
 	});
 
 	$("#my_file").change(function(){
@@ -200,6 +259,68 @@
 		var value = URL.createObjectURL(event.target.files[0]);
 		$("#pic5").attr("src", value);
 	});
+
+	$("#cate").change(function(){
+		var value = $(this).val();
+		$.ajax({
+			url:"<?php echo base_url('index.php/sell/get_category') ?>",
+			data:"code="+value,
+			type:"POST",
+			success:function(res){
+				$("#div_cate").html(res);
+			},
+			error:function(err){
+
+			}
+		});
+	});
+	$("#address").click(function(){
+	    $("#map").hide();
+	});
+
+	    $("#new_address").click(function(){
+	    	$("#map").show();
+	    });
+
+	    $( "form" ).submit(function(){
+	    	alert("55555555");
+
+	    });
+
+	    $("#add_pic").click(function(e){
+
+	    	var max_num = 5;
+	    	var n = $("#items_pic div").length;
+			var html = '<div class="row form-group"><p id ="pic_radio" class="col-xs-1"><input type="radio" name="pic_num" value="'+n+'" required></p><p class="col-xs-6"><input type="file" accept="image/png, image/jpeg, image/gif" name="pic[]" id=pic_'+n+'" required></p><p class="col-xs-4"><button type="button" class="btn btn-danger" id="delete_tel">ลบรูป</button></p></div>';
+			//Append a new row of code to the "#items" div
+			//alert(n);
+			var check = $("#pic").val();
+			
+			if(check == ""){
+				alert("กรุณาเลือกไฟล์รูปก่อน");
+			}else{
+				/*if(n==1){
+					$("#pic_radio").html('<input type="radio" name="pic_num" value="0" required>');
+				}*/
+
+				var check = $("#pic[0]").val();
+				//alert(n);
+				if (n < max_num) {
+					$("#items_pic").append(html);
+				}
+				else{
+					alert("ใส่รูปได้ 5 รูป");
+				}
+			}
+
+	    });
+
+		$("body").on("click", "#delete_tel", function (e) {
+			//alert("5555555555")
+			//e.preventDefault();
+			$(this).parent().parent('div').remove();
+			//$(this).parent(".row form-group div").remove();
+		});
 </script>
 
 
@@ -210,9 +331,11 @@ var GGM; // กำหนดตัวแปร GGM ไว้เก็บ google.m
 
 function initialize() { // ฟังก์ชันแสดงแผนที่
 	// เรียกใช้คุณสมบัติ ระบุตำแหน่ง ของ html 5 ถ้ามี
+
 				//alert(position.coords.latitude+"  "+position.coords.longitude);
 				var latitude = <?php echo $this->session->userdata('lat') ;?>;
 				var longitude = <?php echo $this->session->userdata('log') ;?>;
+				
 				
 				GGM=new Object(google.maps); // เก็บตัวแปร google.maps Object ไว้ในตัวแปร GGM
 				// กำหนดจุดเริ่มต้นของแผนที่
@@ -224,7 +347,7 @@ function initialize() { // ฟังก์ชันแสดงแผนที�
 				var my_DivObj=$("#map_canvas")[0]; 
 				// กำหนด Option ของแผนที่
 				var myOptions = {
-					zoom: 12, // กำหนดขนาดการ zoom
+					zoom: 15, // กำหนดขนาดการ zoom
 					center: my_Latlng , // กำหนดจุดกึ่งกลาง
 					mapTypeId:my_mapTypeId // กำหนดรูปแบบแผนที่
 				};

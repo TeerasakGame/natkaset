@@ -1,142 +1,107 @@
 <style>
 	/* css กำหนดความกว้าง ความสูงของแผนที่ */
 	#map_canvas { 
-		width:80%;
-		height:450px;
-		/*margin:auto;
-		margin-top:100px;*/
+		width:100%;
+		height:368px;
 	}
 
-	div.fixed {
-	    position: fixed;
-	    bottom: 570px;
-	    right: 0;
-	    width: 180px;
-	  /*border: 3px solid #8AC007;*/
-	}
 </style>
+
 </br>
-	<h1>
-        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-        <font color="ED6188"><b>
-        <?php
-		     if(isset($content_text)){
-		        	echo ' '.$content_text;
-		   	}
-		?> 
-		</b></font>
-	</h1>
-<div class="fixed">
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#promotion">กำหนดโปรโมชั่น</button>
-</div>
 
-<div id="page-content-wrapper">
-	<div class="col-lg-12 ">
-		
-		<?php echo validation_errors(); ?>
-
-		<?php echo form_open_multipart('sell', 'class="form-horizontal"');?>
-		
-		<div class="form-group" >
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ประเภทสินค้าที่ประกาศขาย</label></h3>
-			<div class="row">
-				<div class="col-xs-4">
-					<label>ประเภทหลัก(ตลาดที่จะวางขาย)</label>
-			        <select id="cate" class="form-control col-xs-3" name="cate" required>
-			        	<option value="">---กรุณาเลือก---</option>
-			          	<?php foreach ($category->result_array() as $row) { ?>
-					    	<option value="<?php echo $row['cat_code'];?>"><?php echo $row['cat_name']?></option>
-					    <?php } ?>
-			        </select>
+<h1>
+    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+    <font color="ED6188"><b>
+    <?php
+        if(isset($content_text)){
+        	echo ' '.$content_text;
+		}
+	?> 
+	</b></font>
+</h1>
+<form action="<?php echo base_url('index.php/sell')?>" method="post" enctype="multipart/form-data">
+<div class="row">
+	<div class="col-md-6">
+		<div class="row">
+		<div class="col-md-12">
+	    <div class="thumbnail">
+		    <font color="ED6188"><h2>
+		      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+		      <b>
+		        รายละเอียดสินค้า
+		      </b>
+		    </h2></font>
+		    <div class="container-fluid">
+	  		<div class="form-group" >
+			    <h3><label>ประเภทสินค้าที่ประกาศขาย</label></h3>
+				<div class="row">
+					<div class="col-xs-12">
+						<label>ประเภทหลัก(ตลาดที่จะวางขาย)</label>
+				        <select id="cate" class="form-control col-xs-10" name="cate" required>
+				        	<option value="">---กรุณาเลือก---</option>
+						    <?php foreach ($category->result_array() as $row) { ?>
+					    		<option value="<?php echo $row['cat_code'];?>"><?php echo $row['cat_name']?></option>
+					    	<?php } ?>
+						 
+				        </select>
+			  		</div>
+			  		
+			  		<div class="col-xs-12" id="div_cate">
+						
+			  		</div>
+			  		
 		  		</div>
-		  		<div class="col-xs-4" id="div_cate"></div>
-		  		<div class="col-xs-4" id="div_cate2"></div>
-	  		</div>
-		</div>
+			</div>
 
-		<div class="form-group">
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ชื่อสินค้า</label></h3>
-		    <input type="text" class="form-control"  placeholder="ชื่อสินค้าหรือที่ประกาศขาย เช่น แตงโมจินตรา ข้าวหอมมะลิแท้ เป็นต้น" name="topic" value="<?php echo set_value('topic'); ?>" required>
-		</div>
+			<div class="form-group">
+		    	<h3><label>ชื่อสินค้า</label></h3>
+		    	<input type="text" class="form-control"  placeholder="ชื่อสินค้าหรือที่ประกาศขาย เช่น ข้าวหอมมะลิแท้ เป็นต้น" name="topic" value="<?php echo set_value('topic'); ?>" required>
+			</div>
 
-		<div class="form-group">
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ประเภทการประกาศขาย</label></h3>
-		    <div class="input-group col-xs-12">
+			<div class="form-group">
+		    	<h3><label>ประเภทการประกาศขาย</label></h3>
+		    	<div class="input-group col-xs-12">
 		    	<?php foreach ($type->result_array() as $row) { ?>
 		    		<label class="radio-inline" >
 		    			<input type="radio" data-toggle="tooltip" data-placement="auto" title="<?php echo $row['typ_explan'];?>" value="<?php echo $row['typ_id'];?>" name="type" required>
 		    			<?php echo $row['typ_name'];?>
 		    		</label>
 		    	<?php } ?>
+				</div>
 			</div>
-		</div>
-		
-		<div class="form-group">
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> รายละเอียดสินค้า</label></h3>
-		   <textarea class="form-control" rows="5" placeholder="อธิบายเกี่ยวกับ ขนาด ลักษณะ หรืออื่นๆที่สื่อถึงสินค้า" name="explan" required><?php echo set_value('explan'); ?></textarea>
-		</div>
-		
-		<div class="form-group">
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> รูปสินค้า</label></h3>
-		</div>
-	
-		<div id="items_pic">
-			<div class="row form-group">
-				<p id ="pic_radio" class="col-xs-1">
-					<input type="radio" name="pic_num" value="0" checked required>
-				</p>
-				<!--<p id="show_pic" class="col-xs-2"></p>-->
-				<p class="col-xs-6">
-					 <input type="file" accept="image/png, image/jpeg, image/gif" name="pic[]" id="pic" required>
-				</p>
-				<p class="col-xs-3">
-					<button type="button" class="btn btn-info" id="add_pic">เพิ่มรูป</button>
-				</p>
-			</div>
-		</div>
 
-		<div class="form-group">
-		    <h3><label><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ราคา</label></h3>
-			<div class="input-group col-xs-6">
-				<input type="number" class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคาต่อ 1 หน่วย" value="<?php echo set_value('price'); ?>" min="0" required>
-				<span class="input-group-addon">บาท</span>
+			<div class="form-group">
+		    	<h3><label>รายละเอียดสินค้า</label></h3>
+		   		<textarea class="form-control" rows="5" placeholder="อธิบายเกี่ยวกับ ขนาด ลักษณะ หรืออื่นๆที่สื่อถึงสินค้า" name="explan" required><?php echo set_value('explan'); ?></textarea>
 			</div>
-		</div>
 
-		<div class="form-group">
-		    <h3><label class="control-label"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> ที่อยู่ของสินค้า</label></h3>
-		    <div class="input-group col-xs-12">
-			  	<label class="radio-inline"><input type="radio" name="address" id ="new_address" value="1" checked>กำหนดพื้นที่สินค้า</label>
-				<label class="radio-inline"><input type="radio" name="address" id ="address" value="0">ปัจจุบัน</label>
+			<div class="form-group">
+			    <h3><label>ราคา</label></h3>
+				<div class="input-group col-xs-8">
+					<input type="number" class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคาต่อ 1 หน่วย" value="<?php echo set_value('price'); ?>" min="0" required>
+					<span class="input-group-addon">บาท</span>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group" id="map">
-			<center><div id="map_canvas"></div></center>
-		</div>
-		
-		<hr width='70%'>
-		<div class="form-group">
-	        <button type="submit" class="btn btn-success btn-block">ขายสินค้า</button>
 	    </div>
-	</div>
-<!--dialog-->
-	<div class="modal fade" id="promotion" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h2 class="modal-title">โปรโมชั่น</h2>
-                    </div>
-                    <div class="modal-body">
-                           <!-- <p>Some text in the modal.</p> -->
-                 		<div class="form-group">
-                           	<label class="control-label">รายละเอียดโปรโมชั่น</label>
+	    </div>
+	    </div>
+
+	    <div class="col-md-12">
+		    <div class="thumbnail">
+			    <font color="ED6188"><h2>
+			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+			      <b>
+			        โปรโมชั่น
+			      </b>
+			    </h2></font>
+			    <div class="container-fluid">
+			    	<div class="form-group">
+                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
                           	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"></textarea>
                         </div>
                         <div class="form-group">
-                           	<label class="control-label">ระยะเวลาโปรโมชั่น</label>
+                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
                            	<div class="row">
                            		<div class="col-xs-5">
                            			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
@@ -149,77 +114,177 @@
 	                       		</div>
                        		</div>
                        	</div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-                        <button class="btn btn-primary" data-dismiss="modal">ตกลง</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <input name="lat_value" class="form-control" type="hidden" id="lat_value" value="0" >   
-        <input name="lon_value" class="form-control" type="hidden" id="lon_value" value="0" >
-
-	</form>
+		    	</div>
+		    </div>
+		</div>
 </div>
+	 </div>
 
-				 
+	 <div class="col-md-6">
+	    <div class="row">
+	    
 
+	    <div class="col-md-12">
+		    <div class="thumbnail">
+			    <font color="ED6188"><h2>
+			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+			      <b>
+			        รูปสินค้า
+			      </b>
+			    </h2></font>
+			    <div class="container-fluid">
+			    	<!--<div class="row">
+					    <div class="col-md-4">
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic1" required/></center>
+							<input type="file" id="my_file"  style="display: none;" name="pic[]"/>
+					    </div>
+					    <div class="col-md-4">
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic2"/></center>
+					    	<input type="file" id="my_file2" style="display: none;" name="pic[]" />
+					    </div>
+					    <div class="col-md-4">
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic3"/></center>
+					    	<input type="file" id="my_file3" style="display: none;" name="pic[]" />
+					    </div>
+				    </div>
+				    <div class="row">
+					    <div class="col-md-4">
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" height="100" id="pic4"/></center>
+					    	<input type="file" id="my_file4" style="display: none;" name="pic[]" />
+					    </div>
+					    <div class="col-md-4">
+					    	<center><input type="image" src="<?php echo base_url();?>upload/img/Add Image-100.png" width="" height="100" id="pic5"/></center>
+					    	<input type="file" id="my_file5" style="display: none;" name="pic[]" />
+					    </div>
+				    </div>-->
+				   
+				     <div id="items_pic">
+			<div class="row form-group">
+				<p id ="pic_radio" class="col-xs-1">
+					<input type="radio" name="pic_num" value="0" checked required>
+				</p>
+				<!--<p id="show_pic" class="col-xs-2"></p>-->
+				<p class="col-xs-6">
+					 <input type="file" accept="image/png, image/jpeg, image/gif" name="pic[]" id="pic" required>
+				</p>
+				
+			</div>
+		</div>
+
+			<center><p class="col-xs-12">
+					<button type="button" class="btn btn-info btn-block" id="add_pic">เพิ่มรูป</button>
+				</p>
+			</div></center>
+		    
+		    </div>
+		</div>
+		<div class="col-md-12">
+		    <div class="thumbnail">
+			    <font color="ED6188"><h2>
+			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+			      <b>
+			        ที่อยู่สินค้า
+			      </b>
+			    </h2></font>
+		
+			    <div class="container-fluid">
+			    	<div class="form-group">
+		    
+					    <div class="input-group col-xs-12">
+						  	<label class="radio-inline"><input type="radio" name="address" id ="new_address" value="1" checked>กำหนดพื้นที่สินค้า</label>
+							<label class="radio-inline"><input type="radio" name="address" id ="address" value="0">ปัจจุบัน</label>
+						</div>
+					</div>
+		    		<div class="form-group" id="map">
+						<center><div id="map_canvas"></div></center>
+						<input name="lat_value" class="form-control" type="hidden" id="lat_value" value="<?php echo $this->session->userdata('lat') ;?>" >   
+        				<input name="lon_value" class="form-control" type="hidden" id="lon_value" value="<?php echo $this->session->userdata('log') ;?>" >
+					</div>
+		    	</div><br>
+		    	
+		    </div>
+		</div>
+	 </div>
+	</div>
+	<div class="container-fluid">
+		<button type="submit" class="btn btn-success btn-block" id="">ขายสินค้า</button>
+	</div>
+</div>
+</form>
 <script>
+	/*$("input[type='image']").click(function() {
+    	$("input[id='my_file']").click();
+	});**/
+	$("#pic1").click(function() {
+    	$("#my_file").click();
+	});
 
-	$(document).ready(function(){
-	     $("#address").click(function(){
-	    	//alert("555");
-	    	//var html = '<div class="form-group"><div id="map_canvas"></div></div>';
-	    	//$("#map").html(html);
-	    	$("#map").hide();
-	    });
+	$("#pic2").click(function() {
+    	$("#my_file2").click();
+	});
+
+	$("#pic3").click(function() {
+    	$("#my_file3").click();
+	});
+
+	$("#pic4").click(function() {
+    	$("#my_file4").click();
+	});
+
+	$("#pic5").click(function() {
+    	$("#my_file5").click();
+	});
+
+	$("#my_file").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		//alert(value);
+		if(value != null){
+			$("#pic1").attr("src", value);
+		}
+	});
+	$("#my_file2").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic2").attr("src", value);
+	});
+
+	$("#my_file3").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic3").attr("src", value);
+	});
+
+	$("#my_file4").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic4").attr("src", value);
+	});
+
+	$("#my_file5").change(function(){
+		var value = URL.createObjectURL(event.target.files[0]);
+		$("#pic5").attr("src", value);
+	});
+
+	$("#cate").change(function(){
+		var value = $(this).val();
+		$.ajax({
+			url:"<?php echo base_url('index.php/sell/get_category') ?>",
+			data:"code="+value,
+			type:"POST",
+			success:function(res){
+				$("#div_cate").html(res);
+			},
+			error:function(err){
+
+			}
+		});
+	});
+	$("#address").click(function(){
+	    $("#map").hide();
+	});
 
 	    $("#new_address").click(function(){
 	    	$("#map").show();
 	    });
 
-		$("#cate").change(function(){
-			var value = $(this).val();
 
-			$.ajax({
-				url:"sell/get_category",
-				data:"code="+value,
-				type:"POST",
-				//dataTypr:"json",
-				success:function(res){
-					//alert(res);
-					/*var obj = jQuery.parseJSON(res);
-
-					$.each(obj,function(key,val){
-						//alert(val.cat_code+" "+val.cat_name);
-						var html = '<option value="'+val.cat_code+'">'+val.cat_name+'</option>';
-
-						$("#cate2").append('html');
-
-					});*/
-					$("#div_cate").html(res);
-				},
-				error:function(err){
-
-				}
-			});
-		});
-
-		$("#pic").change(function(){
-			//alert("555");
-			//var pic = $("#pic").val();
-
-			var pic =  URL.createObjectURL(event.target.files[0]);
-			//alert(pic);
-			var html = "<img src='"+pic+"'width='' height='80'>"
-			$("#show_pic").html(html);
-
-
-		});
-	    
 	    $("#add_pic").click(function(e){
 
 	    	var max_num = 5;
@@ -254,8 +319,6 @@
 			$(this).parent().parent('div').remove();
 			//$(this).parent(".row form-group div").remove();
 		});
-	});
-
 </script>
 
 
