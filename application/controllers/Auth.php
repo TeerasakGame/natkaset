@@ -93,7 +93,7 @@ class Auth extends CI_Controller {
     */
 	public function login(){
 		if($this->session->userdata('logged_in') == TRUE){
-			redirect('home');
+			redirect('sell/feed');
 		}else{
 			//Set view
 			$data['content_text'] = 'เข้าสู่ระบบ';
