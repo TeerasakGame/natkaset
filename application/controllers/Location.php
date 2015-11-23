@@ -30,12 +30,20 @@ class Location extends CI_Controller {
 		//echo array_search('sublocality_level_2',$data);
 		//echo count($data['results'][0]['address_components']);
 		foreach ($data['results'][0]['address_components'] as $key) {
-			//echo $key['long_name'].' / ';
-			//echo $key['types'][0];
 
+			
+			if($key['types'][0] == 'locality'){
+				$name_tambon = $key['long_name'];
+				//echo $name_tambon.'<';
+			}
 			if($key['types'][0] == 'sublocality_level_2'){
 				$name_tambon = $key['long_name'];
 				//echo $name_tambon.'<';
+			}
+
+			if($key['types'][0] == 'administrative_area_level_2'){
+				$name_amphoe = $key['long_name'];
+				//echo $name_amphoe.'<';
 			}
 			if($key['types'][0] == 'sublocality_level_1'){
 				$name_amphoe = $key['long_name'];
@@ -48,6 +56,7 @@ class Location extends CI_Controller {
 		}
 
 		$full_name = $name_tambon." ".$name_amphoe." ".$name_changwat;
+		//var_dump($full_name);die();
 		$name = array(
 			'tambon' => $name_tambon,
 			'amphoe' => $name_amphoe,
