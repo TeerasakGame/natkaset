@@ -124,6 +124,10 @@ class Location extends CI_Controller {
 				//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
 				$count = $this->sell->get_feed_like($row['sel_id']);
 
+				if ($count == Null){
+					$count[0]['count_like'] = 0;
+				}
+
 				//print_r($count_like);die;
 
 				$add = array(
