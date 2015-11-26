@@ -171,7 +171,7 @@
 
 	    function check_category_by_name($name)
 	    {
-	    	$sql = "SELECT * FROM nat_category WHERE cat_name = ? LIMIT 1";
+	    	$sql = "SELECT * FROM nat_category WHERE cat_name = ? AND cat_parent is null LIMIT 1";
 	    	$query = $this->db->query($sql,array($name));
 	    	if($query->num_rows() > 0){
 	    		//return true;

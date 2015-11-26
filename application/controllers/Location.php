@@ -132,6 +132,8 @@ class Location extends CI_Controller {
 				//$distance_a = $this->get_distance($lat,$lng,$row['sel_lagitude'],$row['sel_longitude']);
 				//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
 				$count = $this->sell->get_feed_like($row['sel_id']);
+				$like = $this->sell->get_like($row['sel_id'],$this->session->userdata('mem_id'));
+
 
 				if ($count == Null){
 					$count[0]['count_like'] = 0;
@@ -161,6 +163,7 @@ class Location extends CI_Controller {
 					'sel_changwat' => $row['sel_changwat'],
 					'sel_promotion' => $row['sel_promotion'],
 					'count_like' => $count[0]['count_like'],
+					'like' => $like,
 					);
 				array_push($new,$add);
 

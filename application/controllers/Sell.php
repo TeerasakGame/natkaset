@@ -283,21 +283,21 @@ class Sell extends Location {
     {
         $data['content_text'] = 'ฟีดรายการสินค้า';
         
-        
-        
         if($key == Null){
             $key = $this->input->post('key');
+            echo $key;die;
             if($key == Null){
                 $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
             }else{
                 if(is_numeric($key) == FALSE){
-                    $check = $this->sell->check_category_by_name($key);
+                    /*$check = $this->sell->check_category_by_name($key);
                     if($check != FALSE){
                         $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$check[0]['cat_code']);
                     }else{
                         $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
-                    }
-                    
+                    }*/
+                    echo $key;die;
+                    $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
                 }else{
                     $data_feed = FALSE;
                 }
