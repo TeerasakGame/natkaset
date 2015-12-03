@@ -239,7 +239,7 @@ class Location extends CI_Controller {
 		      }*/
 
 		  //echo $miles*1.609344;
-		  return number_format($miles*1.609344,2,'.','');
+		  return number_format(($miles*1.609344),2,'.','');
 	}
 
 }
