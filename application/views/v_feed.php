@@ -55,7 +55,7 @@ echo "</pre>";*/
                 <div class="ribbon"><span>โปรโมชั่น</span></div>
                 <?php } ?>
                 <div class="col-md-4" id="pic">
-                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"   height="250" ></a></center>
+                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"   height="250" width="95%"></a></center>
                 </div>
 
                 <div class="col-md-8">
@@ -181,7 +181,7 @@ echo "</pre>";*/
                 <div class="ribbon"><span>โปรโมชั่น</span></div>
                 <?php } ?>
                 <div class="col-md-4" id="pic">
-                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"  height="250" ></a></center>
+                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>"  height="250" width="95%"></a></center>
                 </div>
 
                 <div class="col-md-8">
@@ -251,7 +251,7 @@ echo "</pre>";*/
                 <div class="ribbon"><span>โปรโมชั่น</span></div>
                 <?php } ?>
                 <div class="col-md-4" id="pic">
-                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>" height="250" ></a></center>
+                    <center><a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url($key['sel_pic'])?>" height="250" width="95%"></a></center>
                 </div>
 
                 <div class="col-md-8">
