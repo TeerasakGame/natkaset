@@ -87,11 +87,3 @@
 
 </div>
 
-<script>
- /* $("#search").click(function(){
-      
-    alert("555");
-  });*/
-
-
-</script>

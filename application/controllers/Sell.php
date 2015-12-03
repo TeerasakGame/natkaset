@@ -296,7 +296,7 @@ class Sell extends Location {
                     }else{
                         $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
                     }*/
-                    echo $key;die;
+                   // echo $key;die;
                     $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'),$key);
                 }else{
                     $data_feed = FALSE;
