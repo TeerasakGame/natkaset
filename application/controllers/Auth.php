@@ -53,18 +53,19 @@ class Auth extends CI_Controller {
 							'mem_pic'=> $filenameDB,
 					);
 			//cell function in model
-			$this->auth->add_member($data);
+			$mem_id = $this->auth->add_member($data);
 
 			$newdata = array(
 				                   'username'  => $f_name.' '.$l_name,
 				                   'email'     => $email,
 				                   'logged_in' => TRUE,
 				                   'mem_pic' => $filenameDB,
+								   'mem_id' => $mem_id,
                					);
 
 			$this->session->set_userdata($newdata);
 
-			redirect('FB_login/test_template');
+			redirect('home/set_contact');
 
 		}
 	}

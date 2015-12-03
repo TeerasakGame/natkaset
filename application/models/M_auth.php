@@ -16,6 +16,8 @@
 	    function add_member($data)
 	    {
 	    	$this->db->insert('nat_member', $data); 
+			$id = $this->db->insert_id();
+	    	return $id;
 	    }
 
 	    function check_login($email)
