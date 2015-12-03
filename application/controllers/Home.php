@@ -128,7 +128,8 @@ class Home extends CI_Controller {
 
             $this->session->set_userdata('status_concact', '1');
 
-            redirect('home','refresh');
+            //redirect('home','refresh');
+			redirect('sell/feed');
             
        // }
         /*echo $f_name." ".$l_name." ".$email." "." ".$lat." ".$lon;

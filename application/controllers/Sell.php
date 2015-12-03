@@ -285,7 +285,7 @@ class Sell extends Location {
         
         if($key == Null){
             $key = $this->input->post('key');
-            echo $key;die;
+            //echo $key;die;
             if($key == Null){
                 $data_feed = $this->distance($this->session->userdata('lat'),$this->session->userdata('log'));
             }else{
