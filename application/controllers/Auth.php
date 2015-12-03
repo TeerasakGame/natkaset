@@ -251,7 +251,8 @@ class Auth extends CI_Controller {
 	            }
 	        }else{
 	        	//login with facebook
-	        	die("<script>top.location='".$this->facebook->getLoginUrl(array('scope' => 'email','redirect_url' => 'base_url()index.php/auth/login_facebook'))."'</script>");
+	        	//die("<script>top.location='".$this->facebook->getLoginUrl(array('scope' => 'email','redirect_url' => 'base_url()index.php/auth/login_facebook'))."'</script>");
+				die("<script>top.location='".$this->facebook->getLoginUrl(array('scope' => 'email'))."'</script>");
 	        }
 	    }
     }
