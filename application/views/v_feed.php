@@ -35,9 +35,9 @@
 echo "<pre>";
 print_r($xml);
 echo "</pre>";*/
+ //echo "555  ".$this->session->userdata('lat');
 ?>
   
-
   <ul class="nav nav-tabs">
     <li class="active"><a href="#A" data-toggle="tab">ล่าสุด</a></li>
     <li><a href="#B" data-toggle="tab">ระยะทาง</a></li>
@@ -313,7 +313,7 @@ echo "</pre>";*/
 
     </div><!-- tab content -->
   </div><!-- tab -->
-
+<input type="hidden" id="check" value="<?php echo $this->session->userdata('lat') ?>">
 <script>
     if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(function(position){
@@ -324,17 +324,23 @@ echo "</pre>";*/
                 $("#lon").val(longitude);
 
                 $.ajax({
-            url:"<?php echo base_url()?>index.php/home/test",
-            data:"lat="+latitude+"&log="+longitude,
-            type:"POST",
-            //dataTypr:"json",
-            success:function(res){
-              //alert(res);
-            },
-            error:function(err){
+                  url:"<?php echo base_url()?>index.php/home/test",
+                  data:"lat="+latitude+"&log="+longitude,
+                  type:"POST",
+                  //dataTypr:"json",
+                  success:function(res){
+                    //alert(res);
+                    var check = $("#check").val();
+                    if(check == null || check == ""){
+                     // alert(check);
+                      location.reload();
+                    }
+                    //alert(check);
+                  },
+                  error:function(err){
 
-            }
-           });  
+                  }
+                });  
 
             },function() {
                 // คำสั่งทำงาน ถ้า ระบบระบุตำแหน่ง geolocation ผิดพลาด หรือไม่ทำงาน
@@ -345,7 +351,12 @@ echo "</pre>";*/
                     type:"POST",
                     //dataTypr:"json",
                     success:function(res){
-                        //alert(res);
+                       // alert(res);
+                      var check = $("#check").val();
+                      if(check == null || check == ""){
+                       // alert(check);
+                        location.reload();
+                      }
                     },
                     error:function(err){
 
@@ -361,7 +372,12 @@ echo "</pre>";*/
                     type:"POST",
                     //dataTypr:"json",
                     success:function(res){
-                        //alert(res);
+                       // alert(res);
+                      var check = $("#check").val();
+                      if(check == null || check == ""){
+                       // alert(check);
+                        location.reload();
+                      }
                     },
                     error:function(err){
 
