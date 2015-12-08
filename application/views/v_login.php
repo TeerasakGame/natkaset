@@ -20,10 +20,10 @@
 	          <button type="submit" class="btn btn-success btn-block">ตกลง</button>
 	      	</div>
 	    
-	    <center><h2>--- OR ---</h2></center>
+	    <!--<center><h2>--- OR ---</h2></center>
 	    <div class="form-group">	
 	    	<a href = "<?php echo base_url()?>index.php/auth/login_facebook"><button type="button" class="btn btn-primary btn-block">เข้าสู่ระบบด้วย Facebook</button></a>
-	    </div>
+	    </div>-->
 	    </form>
 	</div>
 </div>
