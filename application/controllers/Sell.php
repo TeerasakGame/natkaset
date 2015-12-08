@@ -23,6 +23,9 @@ class Sell extends Location {
     */
 	public function index()
 	{
+        if($this->session->userdata('logged_in') != TRUE){
+            redirect('auth/login');
+        }else{
         //set page view
         $data['content_text'] = 'ประกาศขายสินค้า';
         $data['content_view'] = 'v_sell';
@@ -63,6 +66,7 @@ class Sell extends Location {
         if($this->form_validation->run() == FALSE){
             $this->load->view('default',$data);
         }else{
+
             $mem_id = $this->session->userdata('mem_id');
             
             if($address == 1){
@@ -139,6 +143,9 @@ class Sell extends Location {
 
             redirect('sell/feed');
         }
+
+        }
+        
         
 	}
 
@@ -187,95 +194,101 @@ class Sell extends Location {
     }
 
     public function guide(){
-        $data['content_text'] = 'แนะนำสินค้า';
-        //$data['content_view'] = 'v_guide';
-        $data['content_view'] = 'v_sell2';
-
-        //call funtion in model for get TYPE
-        $data['type'] = $this->sell->get_type();
-        $data['category'] = $this->sell->get_category();
-
-        $cate = $this->input->post('cate');
-        $cate2 = $this->input->post('cate2');
-        $topic = $this->input->post('topic');
-        $type = $this->input->post('type');
-        $explan = $this->input->post('explan');
-        $pic_num = $this->input->post('pic_num');
-        $price = $this->input->post('price');
-       
-        $lat = $this->input->post('lat_value');
-        $lon = $this->input->post('lon_value');
-
-        $this->form_validation->set_rules('topic','หัวข้อ','required');
-        $this->form_validation->set_rules('explan','รายละเอียดสินค้า','required');
-        $this->form_validation->set_rules('price','ราคา','required');
-
-        //set div for error 
-        $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
-
-        if($this->form_validation->run() == FALSE){
-            $this->load->view('default',$data);
+        
+        if($this->session->userdata('logged_in') != TRUE){
+            redirect('auth/login');
         }else{
-            $mem_id = $this->session->userdata('mem_id');
+
+            $data['content_text'] = 'แนะนำสินค้า';
+            //$data['content_view'] = 'v_guide';
+            $data['content_view'] = 'v_sell2';
+
+            //call funtion in model for get TYPE
+            $data['type'] = $this->sell->get_type();
+            $data['category'] = $this->sell->get_category();
+
+            $cate = $this->input->post('cate');
+            $cate2 = $this->input->post('cate2');
+            $topic = $this->input->post('topic');
+            $type = $this->input->post('type');
+            $explan = $this->input->post('explan');
+            $pic_num = $this->input->post('pic_num');
+            $price = $this->input->post('price');
+           
+            $lat = $this->input->post('lat_value');
+            $lon = $this->input->post('lon_value');
+
+            $this->form_validation->set_rules('topic','หัวข้อ','required');
+            $this->form_validation->set_rules('explan','รายละเอียดสินค้า','required');
+            $this->form_validation->set_rules('price','ราคา','required');
+
+            //set div for error 
+            $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
+
+            if($this->form_validation->run() == FALSE){
+                $this->load->view('default',$data);
+            }else{
+                $mem_id = $this->session->userdata('mem_id');
 
 
 
-            $name_address = $this->get_name_latlng($lat,$lon);
+                $name_address = $this->get_name_latlng($lat,$lon);
 
-            $tambon = $name_address['tambon'];
-            $amphoe = $name_address['amphoe'];
-            $changwat = $name_address['changwat'];
-            
-            $data = array(
-                'sel_topic' => $topic,
-                'sel_explain' => $explan,
-                'sel_price' => $price,
-                'sel_time_create' => date("Y-m-d H:i:s"),
-                'sel_status' => 1,
-                'cat_id' => $cate2,
-                'typ_id' => 3,
-                'mem_id' => $mem_id,
-                'sel_longitude' => $lon,
-                'sel_lagitude' => $lat,
-                'sel_tambon' => $tambon,
-                'sel_amphoe'=> $amphoe,
-                'sel_changwat' => $changwat,
-                );
-            
-           // print_r($data);
+                $tambon = $name_address['tambon'];
+                $amphoe = $name_address['amphoe'];
+                $changwat = $name_address['changwat'];
+                
+                $data = array(
+                    'sel_topic' => $topic,
+                    'sel_explain' => $explan,
+                    'sel_price' => $price,
+                    'sel_time_create' => date("Y-m-d H:i:s"),
+                    'sel_status' => 1,
+                    'cat_id' => $cate2,
+                    'typ_id' => 3,
+                    'mem_id' => $mem_id,
+                    'sel_longitude' => $lon,
+                    'sel_lagitude' => $lat,
+                    'sel_tambon' => $tambon,
+                    'sel_amphoe'=> $amphoe,
+                    'sel_changwat' => $changwat,
+                    );
+                
+               // print_r($data);
 
-            $sel_id = $this->sell->add_sell($data);
+                $sel_id = $this->sell->add_sell($data);
 
-            $num = count($_FILES["pic"]["name"]);
-            //echo "pic:".$num;
-            for ($i=0; $i < $num; $i++) { 
-                //echo $_FILES["pic"]["name"][$i];
-                $files = $_FILES['pic'];
-                $Path = 'image_topic';                  
-                $filename = $files['name'][$i];
-                $filenameDB = $Path.'/'.date('Ymd').'_'.uniqid(date('Hms')).'_'.$mem_id.'.png';
-                copy($files['tmp_name'][$i],$filenameDB);
+                $num = count($_FILES["pic"]["name"]);
+                //echo "pic:".$num;
+                for ($i=0; $i < $num; $i++) { 
+                    //echo $_FILES["pic"]["name"][$i];
+                    $files = $_FILES['pic'];
+                    $Path = 'image_topic';                  
+                    $filename = $files['name'][$i];
+                    $filenameDB = $Path.'/'.date('Ymd').'_'.uniqid(date('Hms')).'_'.$mem_id.'.png';
+                    copy($files['tmp_name'][$i],$filenameDB);
 
-                if($pic_num == $i){
-                    //echo "555555"; die;
+                    if($pic_num == $i){
+                        //echo "555555"; die;
+                        $data_pic = array(
+                            'sel_pic' => $filenameDB,
+                            );
+                        $this->sell->update_sell($sel_id,$data_pic);
+                    }
+
                     $data_pic = array(
-                        'sel_pic' => $filenameDB,
+                            'pic_path' => $filenameDB,
+                            'pic_degree' => $i+1,
+                            'sel_id' => $sel_id,
                         );
-                    $this->sell->update_sell($sel_id,$data_pic);
+
+                    $this->sell->add_pic($data_pic);
+                    
+                   // echo $filenameDB;
                 }
 
-                $data_pic = array(
-                        'pic_path' => $filenameDB,
-                        'pic_degree' => $i+1,
-                        'sel_id' => $sel_id,
-                    );
-
-                $this->sell->add_pic($data_pic);
-                
-               // echo $filenameDB;
+                redirect('sell/feed');
             }
-
-            redirect('sell/feed');
         }
     }
 
