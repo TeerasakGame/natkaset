@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <?php if($this->session->userdata('email') == Null){ ?>
-        <a href="<?php echo base_url('home')?>"><img src="<?php echo base_url();?>upload/img/logo.png" width="214px" height="49px"></a>
+        <a href="<?php echo base_url('index.php/sell/feed')?>"><img src="<?php echo base_url();?>upload/img/logo.png" width="214px" height="49px"></a>
       <?php }else{?>
           <a href="#menu-toggle"  id="menu-toggle" data-toggle="tooltip" data-placement="right" title="แสดง/ซ่อนเมนู">
               <span><img src="<?php echo base_url();?>upload/img/logo.png" width="214px" height="49px"></span>
