@@ -33,5 +33,17 @@
 			$query = $this->db->query($sql);
 			return $query;
 	    }
+		
+		function check_status($mem_id)
+		{
+			$sql = "SELECT * FROM nat_member WHERE mem_id = ?";
+			$query = $this->db->query($sql, array($mem_id));
+			$data = $query->result_array();
+			if($data[0]['mem_status'] == '0'){
+				return true;
+			}else{
+				return false;
+			}
+		}
 	}
 ?>

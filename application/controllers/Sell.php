@@ -9,9 +9,9 @@ class Sell extends Location {
     {
         parent::__construct();
         //check login
-        if($this->session->userdata('logged_in') != TRUE){
+       /* if($this->session->userdata('logged_in') != TRUE){
             redirect('auth/login');
-        }
+        }*/
         //load model
         $this->load->model('m_sell','sell');
     }
@@ -321,7 +321,15 @@ class Sell extends Location {
             
         }
 
-        $this->load->view('default',$data);
+        $check = $this->session->userdata('mem_id');
+        
+        if($check == Null){
+            $this->load->view('default_index',$data);
+        }else{
+            $this->load->view('default',$data);
+        }
+
+        
     }
 
     public function detail($id)
@@ -337,7 +345,15 @@ class Sell extends Location {
         $data['comment'] = $this->sell->get_comment($data['detail']['0']['sel_id']);
         //print_r($data['like']);die;
         $data['count_like'] = $this->sell->get_count_like($data['detail']['0']['sel_id']); 
-        $this->load->view('default',$data);
+        //$this->load->view('default',$data);
+
+        $check = $this->session->userdata('mem_id');
+        
+        if($check == Null){
+            $this->load->view('default_index',$data);
+        }else{
+            $this->load->view('default',$data);
+        }
     }
 
     public function detail_android($id)
