@@ -17,6 +17,7 @@
     <link href="<?php echo base_url();?>css/simple-sidebar.css" rel="stylesheet">
     <!-- Fonts CSS -->
     <link href="<?php echo base_url();?>css/fonts.css" rel="stylesheet"  >
+	<link href="<?php echo base_url();?>css/ribbon.css" rel="stylesheet"  >
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
