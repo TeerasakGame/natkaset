@@ -90,6 +90,7 @@
             <div class="col-xs-9">
               <h1><b><?php if($detail[0]['sel_status'] == 0){echo "[ปิดการขาย] ";}?><?php echo $detail[0]['sel_topic']?></b></h1>
             </div>
+            <?php if($this->session->userdata('mem_id') != Null){ ?>
             <div class="col-xs-3 text-right" id="div_pic">
               <?php if($like == false){?>
                 <h2>
@@ -110,6 +111,7 @@
               <?php } ?>
               <?php } ?>
             </div>
+            <?php } ?>
           </div>
          </br>
          <table class="table table-striped">
@@ -176,7 +178,7 @@
   </div> 
 </div> 
 
-
+<?php if($this->session->userdata('mem_id') != Null){ ?>
 <div class="row">
   <div class="col-md-7">
     <div class="thumbnail">
@@ -262,6 +264,7 @@
   </div>
   </div>  
 </div>
+<?php } ?>
 
 
 <!-- Map -->
