@@ -125,8 +125,13 @@ class Auth extends CI_Controller {
 	               			);
 
 				$this->session->set_userdata($newdata);
-
-				redirect('sell/feed');
+				$status = $this->auth->check_status($this->session->userdata('mem_id'));
+				if($status == true){
+					redirect('home/set_contact');
+				}else{
+					redirect('sell/feed');
+				}
+				
 			}
 
 		}	
@@ -166,7 +171,7 @@ class Auth extends CI_Controller {
     */
     public function login_facebook(){
     	if($this->session->userdata('logged_in') == TRUE){
-			redirect('home');
+			redirect('sell/feed');
 		}else{
 	    	//load facebook library
 	    	$this->load->library('facebook');
@@ -244,7 +249,13 @@ class Auth extends CI_Controller {
 
 						$this->session->set_userdata($newdata);
 
-						redirect('sell/feed');
+						//redirect('sell/feed');
+						$status = $this->auth->check_status($this->session->userdata('mem_id'));
+						if($status == true){
+							redirect('home/set_contact');
+						}else{
+							redirect('sell/feed');
+						}
 					} 
 	            }catch (FacebookApiException $e) {
 	                $user = null;
