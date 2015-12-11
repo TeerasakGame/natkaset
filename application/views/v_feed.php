@@ -14,6 +14,10 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .btn-pink{
+    background-color: #E26A8D;
+    border-color: #E26A8D;
+  } 
 
 
 </style>
@@ -30,6 +34,23 @@
   </b>
   </font>
 </h1>
+<?php if($this->session->userdata('mem_id') == Null){ ?>
+<div class="row">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4 text-right">
+    <form action="<?php echo base_url();?>index.php/sell/feed" method="post" >
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="ชื่อสินค้า" name="key"/>
+          <span class="input-group-btn">
+            <button class="btn btn-pink" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
+          </span>
+        </div>
+    </form>
+  </div>
+</div>
+<?php } ?>
+  
 <?php
 /*$xml=simplexml_load_file("http://www.dit.go.th/pricestat/index3.asp?m=A&p=%A1%C3%D0%E0%A8%D5%EA%C2%BA%E1%B4%A7%20%E1%CB%E9%A7");
 echo "<pre>";
@@ -43,6 +64,7 @@ echo "</pre>";*/
     <li><a href="#B" data-toggle="tab">ระยะทาง</a></li>
     <li><a href="#C" data-toggle="tab">ยอดนิยม</a></li>
   </ul>
+
 
   <div class="tabbable">
     <div class="tab-content">
