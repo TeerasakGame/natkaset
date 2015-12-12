@@ -86,8 +86,56 @@
 	    </div>
 	    </div>
 	    </div>
-
 	    <div class="col-md-12">
+	    	<div class="thumbnail">
+		    <div role="tab" id="headingTwo">
+		      <h4 class="panel-title">
+		       
+		         <font color="#278FAF">
+		          <h2>
+			      <div class="row">
+			      	<div class="col-xs-10">
+				      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+				      <b>
+				        โปรโมชั่น
+				      </b>
+			  		</div>
+			  		<div class="col-xs-2">
+			      		<span class="collapsed glyphicon glyphicon-menu-hamburger" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></span>
+			     	</div>
+			      </div>
+			    </h2>
+				</font>
+			    
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		      <div class="panel-body">
+		       	<div class="container-fluid">
+			    	<div class="form-group">
+                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
+                          	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"></textarea>
+                        </div>
+                        <div class="form-group">
+                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
+                           	<div class="row">
+                           		<div class="col-xs-5">
+                           			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
+	                       			</div>
+	                       		<div class="col-xs-1">
+	                       			<center><b> ถึง </b></center>
+	                       		</div>
+	                       		<div class="col-xs-5">
+	                       				<input type="date" class="form-control" name="pro_end" min="<?php echo date('Y-m-d'); ?>">
+	                       		</div>
+                       		</div>
+                       	</div>
+		    	</div>
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+	    <!--<div class="col-md-12">
 		    <div class="thumbnail">
 			    <font color="#278FAF"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
@@ -95,6 +143,7 @@
 			        โปรโมชั่น
 			      </b>
 			    </h2></font>
+			    <div id="pro">5555</div>
 			    <div class="container-fluid">
 			    	<div class="form-group">
                            	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
@@ -116,7 +165,7 @@
                        	</div>
 		    	</div>
 		    </div>
-		</div>
+		</div>-->
 </div>
 	 </div>
 
@@ -211,6 +260,9 @@
 	</div>
 </div>
 </form>
+
+  
+
 <script>
 	/*$("input[type='image']").click(function() {
     	$("input[id='my_file']").click();
@@ -319,6 +371,12 @@
 			$(this).parent().parent('div').remove();
 			//$(this).parent(".row form-group div").remove();
 		});
+
+		$("#pro").click(function(){
+			//alert("5555555555")
+			//$("#pro").attr("class", "collapsed glyphicon glyphicon-menu-up");
+		});
+		
 </script>
 
 
