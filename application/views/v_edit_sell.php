@@ -11,7 +11,7 @@
 
 <h1>
     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-    <font color="ED6188"><b>
+    <font color="#278FAF"><b>
     <?php
         if(isset($content_text)){
         	echo ' '.$content_text;
@@ -25,7 +25,7 @@
 		<div class="row">
 		<div class="col-md-12">
 	    <div class="thumbnail">
-		    <font color="ED6188"><h2>
+		    <font color="#278FAF"><h2>
 		      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 		      <b>
 		        รายละเอียดสินค้า
@@ -100,7 +100,7 @@
 
 	    <div class="col-md-12">
 		    <div class="thumbnail">
-			    <font color="ED6188"><h2>
+			    <font color="#278FAF"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 			      <b>
 			        โปรโมชั่น
@@ -137,7 +137,7 @@
 
 	    <div class="col-md-12">
 		    <div class="thumbnail">
-			    <font color="ED6188"><h2>
+			    <font color="#278FAF"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 			      <b>
 			        รูปสินค้า
@@ -189,7 +189,7 @@
 		</div>
 		<div class="col-md-12">
 		    <div class="thumbnail">
-			    <font color="ED6188"><h2>
+			    <font color="#278FAF"><h2>
 			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
 			      <b>
 			        ที่อยู่สินค้า

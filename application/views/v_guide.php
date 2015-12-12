@@ -11,7 +11,7 @@
 </br>
 	<h1>
         <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-        <font color="ED6188"><b>
+        <font color="#278FAF"><b>
         <?php
 		     if(isset($content_text)){
 		        	echo ' '.$content_text;

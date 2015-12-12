@@ -5,15 +5,15 @@
         font-size: 22px
     }
     a:hover#colerfont, a:focus#colerfont {
-        color: #E26A8D;
+        color: #278FAF;
     }
     .serch{
       padding-left: 5%;
       padding-right: 5%;
     }
-    .btn-pink{
-    background-color: #E26A8D;
-    border-color: #E26A8D;
+    .btn-blue{
+    background-color: #278FAF;
+    border-color: #278FAF;
     } 
 </style>
 
@@ -35,7 +35,7 @@
       <div class="input-group">
         <input type="text" class="form-control" placeholder="ชื่อสินค้า" name="key"/>
         <span class="input-group-btn">
-          <button class="btn btn-pink" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
+          <button class="btn btn-blue" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
         </span>
       </div>
     </div>

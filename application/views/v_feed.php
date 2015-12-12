@@ -18,13 +18,19 @@
     background-color: #E26A8D;
     border-color: #E26A8D;
   } 
+  .btn-blue{
+    background-color: #278FAF;
+    border-color: #278FAF;
+  } 
 
 
 </style>
 </br>
 <h1>
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-  <font color="ED6188">
+  <!--<font color="ED6188">-->
+  <font color="#278FAF">
+    
   <b>
     <?php
        if(isset($content_text)){
@@ -43,7 +49,7 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="ชื่อสินค้า" name="key"/>
           <span class="input-group-btn">
-            <button class="btn btn-pink" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-blue" id="search" type="summit"><span class="glyphicon glyphicon-search"></span></button>
           </span>
         </div>
     </form>

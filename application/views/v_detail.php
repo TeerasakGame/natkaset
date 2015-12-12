@@ -23,7 +23,7 @@
 </br>
 <h1>
   <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-  <font color="ED6188">
+  <font color="#278FAF">
   <b>
     <?php
        if(isset($content_text)){
@@ -184,7 +184,7 @@
     <div class="thumbnail">
     <h1>
       <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
-      <font color="ED6188">
+      <font color="#278FAF">
       <b>
         การเดินทาง
       </b>
@@ -214,7 +214,7 @@
     <div class="thumbnail" >
       <h1>
       <img src="<?php echo base_url();?>upload/img/Comments-50.png">
-      <font color="ED6188">
+      <font color="#278FAF">
       <b>
         ความคิดเห็น
       </b>

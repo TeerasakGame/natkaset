@@ -8,7 +8,7 @@
 </br>
 <h1>
   <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-  <font color="ED6188">
+  <font color="#278FAF">
   <b>
     <?php
        if(isset($content_text)){
