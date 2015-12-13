@@ -39,7 +39,7 @@
         <td>
           <ul>
             <li>รายละเอียด : <?php echo $row['sel_explain']?></li>
-            <li>ราคา : <?php echo $row['sel_price']?> บาท</li>
+            <!--<li>ราคา : <?php echo $row['sel_price']?> บาท</li>-->
             <?php if($row['sel_promotion'] != null ){ ?>
               <li>โปรโมชั่น : <?php echo $row['sel_promotion']?></li>
             <?php } ?>

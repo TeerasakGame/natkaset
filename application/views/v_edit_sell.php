@@ -66,7 +66,7 @@
 
 			<div class="form-group">
 		    	<h3><label>ประเภทการประกาศขาย</label></h3>
-		    	<div class="input-group col-xs-12">
+		    	<!--<div class="input-group col-xs-12">
 		    	<?php foreach ($type->result_array() as $row) { ?>
 		    		<label class="radio-inline" >
 		    			<?php if($row['typ_id'] == $sell[0]['typ_id']){?>
@@ -78,7 +78,120 @@
 		    			<?php } ?>
 		    		</label>
 		    	<?php } ?>
-				</div>
+				</div>-->
+				<?php $count = count($price);?>
+				<?php if($count == 1){?>
+					<?php if($price[0]['typ_id'] == 1){?>
+						<div class="checkbox">
+						  <label><input type="checkbox" id="type_1" name="type_1" data-toggle="tooltip" data-placement="auto" title="" value="1" checked>ขายปลีก</label>
+						</div>
+						<div id="check1">
+							<div class="form-group">
+								<div class="row">
+								<div class="col-xs-6">
+									<div class="input-group">
+										<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ1" placeholder="ราคา เช่น 100" value="<?php echo $price[0]['pri_price'] ?>" min="0" required>
+										<span class="input-group-addon">บาท</span>
+									</div>
+								</div>
+								<div class="col-xs-1">
+									<center>ต่อ</center>
+								</div>
+								<div class="col-xs-5">
+									<div class="input-group">
+										<input type="text"  class="form-control"  name="unit_typ1" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="<?php echo $price[0]['pri_unit'] ?>" required>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="checkbox">
+						  <label><input type="checkbox" id="type_2" name="type_2" data-toggle="tooltip" data-placement="auto" title="" value="2">ขายส่ง</label>
+						</div>
+						<div id="check2">
+						</div>
+					<?php  }else{ ?>
+						<div class="checkbox">
+						  <label><input type="checkbox" id="type_1" name="type_1" data-toggle="tooltip" data-placement="auto" title="" value="1">ขายปลีก</label>
+						</div>
+						<div id="check1">
+						</div>
+						<div class="checkbox">
+						  <label><input type="checkbox" id="type_2" name="type_2" data-toggle="tooltip" data-placement="auto" title="" value="2" checked>ขายส่ง</label>
+						</div>
+						<div id="check2">
+							<div class="form-group">
+								<div class="row">
+								<div class="col-xs-6">
+									<div class="input-group">
+										<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ2" placeholder="ราคา เช่น 100" value="<?php echo $price[0]['pri_price'] ?>" min="0" required>
+										<span class="input-group-addon">บาท</span>
+									</div>
+								</div>
+								<div class="col-xs-1">
+									<center>ต่อ</center>
+								</div>
+								<div class="col-xs-5">
+									<div class="input-group">
+										<input type="text"  class="form-control"  name="unit_typ2" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="<?php echo $price[0]['pri_unit'] ?>" required>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						
+					<?php } ?>
+
+				<?php  } else{ ?>
+					<div class="checkbox">
+						  <label><input type="checkbox" id="type_1" name="type_1" data-toggle="tooltip" data-placement="auto" title="" value="1" checked>ขายปลีก</label>
+						</div>
+						<div id="check1">
+							<div class="form-group">
+								<div class="row">
+								<div class="col-xs-6">
+									<div class="input-group">
+										<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ1" placeholder="ราคา เช่น 100" value="<?php echo $price[0]['pri_price'] ?>" min="0" required>
+										<span class="input-group-addon">บาท</span>
+									</div>
+								</div>
+								<div class="col-xs-1">
+									<center>ต่อ</center>
+								</div>
+								<div class="col-xs-5">
+									<div class="input-group">
+										<input type="text"  class="form-control"  name="unit_typ1" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="<?php echo $price[0]['pri_unit'] ?>" required>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+						<div class="checkbox">
+						  <label><input type="checkbox" id="type_2" name="type_2" data-toggle="tooltip" data-placement="auto" title="" value="2" checked>ขายส่ง</label>
+						</div>
+						<div id="check2">
+							<div class="form-group">
+								<div class="row">
+								<div class="col-xs-6">
+									<div class="input-group">
+										<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ2" placeholder="ราคา เช่น 100" value="<?php echo $price[1]['pri_price'] ?>" min="0" required>
+										<span class="input-group-addon">บาท</span>
+									</div>
+								</div>
+								<div class="col-xs-1">
+									<center>ต่อ</center>
+								</div>
+								<div class="col-xs-5">
+									<div class="input-group">
+										<input type="text"  class="form-control"  name="unit_typ2" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="<?php echo $price[1]['pri_unit'] ?>" required>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+
+				<?php } ?>
+
 			</div>
 
 			<div class="form-group">
@@ -86,13 +199,14 @@
 		   		<textarea class="form-control" rows="5" placeholder="อธิบายเกี่ยวกับ ขนาด ลักษณะ หรืออื่นๆที่สื่อถึงสินค้า" name="explan" required><?php echo $sell[0]['sel_explain']; ?></textarea>
 			</div>
 
-			<div class="form-group">
+			<!--<div class="form-group">
 			    <h3><label>ราคา</label></h3>
 				<div class="input-group col-xs-8">
 					<input type="number" class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคาต่อ 1 หน่วย" value="<?php echo $sell[0]['sel_price']; ?>" min="0" required>
 					<span class="input-group-addon">บาท</span>
 				</div>
-			</div>
+			</div>-->
+
 
 	    </div>
 	    </div>
@@ -328,6 +442,32 @@
 			//e.preventDefault();
 			$(this).parent().parent('div').remove();
 			//$(this).parent(".row form-group div").remove();
+		});
+
+		$("#type_1").change(function(){
+			//alert("5555555555")
+			//$("#pro").attr("class", "collapsed glyphicon glyphicon-menu-up");
+			if($(this).is(":checked")) {
+		      // 	alert("checked")
+		       	var html = '<div class="form-group"><div class="row"><div class="col-xs-6"><div class="input-group"><input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ1" placeholder="ราคา เช่น 100" value="" min="0" required><span class="input-group-addon">บาท</span></div></div><div class="col-xs-1"><center>ต่อ</center></div><div class="col-xs-5"><div class="input-group"><input type="text"  class="form-control"  name="unit_typ1" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="" required></div></div></div></div>';
+		    	$("#check1").html(html);
+		    } else {
+		      //  alert("No!! checked")
+		        $("#check1").html("");
+		    }
+		});
+
+		$("#type_2").change(function(){
+			//alert("5555555555")
+			//$("#pro").attr("class", "collapsed glyphicon glyphicon-menu-up");
+			if($(this).is(":checked")) {
+		       //	alert("checked")
+		       	var html = '<div class="form-group"><div class="row"><div class="col-xs-6"><div class="input-group"><input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ2" placeholder="ราคา เช่น 100" value="" min="0" required><span class="input-group-addon">บาท</span></div></div><div class="col-xs-1"><center>ต่อ</center></div><div class="col-xs-5"><div class="input-group"><input type="text"  class="form-control"  name="unit_typ2" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="" required></div></div></div></div>';
+		    	$("#check2").html(html);
+		    } else {
+		       // alert("No!! checked")
+		        $("#check2").html("");
+		    }
 		});
 </script>
 

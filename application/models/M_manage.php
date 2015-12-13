@@ -30,6 +30,13 @@
 	    	$this->db->where('sel_id',$sel_id) ;
 	    	$this->db->update('nat_price', $data);
 	    }
+	    
+
+	    function update_price2($sel_id,$typ_id,$data)
+	    {
+	    	$sql = "UPDATE nat_price SET pri_price = ?, pri_unit = ? WHERE typ_id = ? and sel_id = ? ";
+	    	$query = $this->db->query($sql,array($data['pri_price'],$data['pri_unit'],$typ_id,$sel_id));
+	    }
 
 	    function get_sell_id($sel_id)
 	    {
@@ -63,6 +70,22 @@
 	    {
 	    	$this->db->where('pic_id', $id);
 			$this->db->delete('nat_picture');
+	    }
+
+	    function check_price($sel_id,$typ_id)
+	    {
+	    	$sql = "SELECT * FROM nat_price WHERE sel_id = ? AND typ_id = ?";
+	    	$query = $this->db->query($sql,array($sel_id,$typ_id));
+	    	if($query->num_rows() > 0){
+	    		return true;
+	    	}else{
+	    		return false;
+	    	}
+	    }
+	    function del_price($sel_id,$typ_id)
+	    {
+	    	$sql = "DELETE FROM nat_price WHERE sel_id = ? AND typ_id = ?";
+	    	$query = $this->db->query($sql,array($sel_id,$typ_id));
 	    }
 
 	}

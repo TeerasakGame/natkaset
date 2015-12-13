@@ -20,7 +20,6 @@ class Manage extends Location {
         $data['content_view'] = 'v_manage_sell';
 
         $data['sell'] = $this->manage->get_sel_by_id($this->session->userdata('mem_id'));
-        
         $this->load->view('default',$data);
 
     }
@@ -92,7 +91,9 @@ class Manage extends Location {
         $cate = $this->input->post('cate');
         $cate2 = $this->input->post('cate2');
         $topic = $this->input->post('topic');
-        $type = $this->input->post('type');
+        //$type = $this->input->post('type');
+        $type_1 = $this->input->post('type_1');
+        $type_2 = $this->input->post('type_2');
         $explan = $this->input->post('explan');
         $price = $this->input->post('price');
         $unit = $this->input->post('unit');
@@ -121,6 +122,19 @@ class Manage extends Location {
             $amphoe = $name_address['amphoe'];
             $changwat = $name_address['changwat'];
 
+            if($type_1 != null && $type_2 != null){
+                $type = 4;
+            }
+            if($type_1 == null && $type_2 != null){
+                $type = 2;
+            }
+            if($type_1 != null && $type_2 == null){
+                $type = 1;
+            }
+            if($type_1 == null && $type_2 == null){
+                $type = 3;
+            }
+
             $data = array(
                 'sel_topic' => $topic,
                 'sel_explain' => $explan,
@@ -141,12 +155,58 @@ class Manage extends Location {
                 );
 
             $this->manage->update_sell($sel_id,$data);
-            $data_price = array(
+            
+            if($type == 3){
+                $data_price = array(
                             'pri_price' => $price,
                             'pri_unit' => $unit, 
                         );
-            $this->manage->update_price($sel_id,$data_price);
-            
+                 $this->manage->update_price($sel_id,$data_price);
+            }
+
+            if($type_1 != null){
+                $check_price = $this->manage->check_price($sel_id,$type_1);
+                if($check_price == false){
+                    $data_price1 = array(
+                                'pri_price' => $this->input->post('price_typ1'),
+                                'pri_unit' => $this->input->post('unit_typ1'),
+                                'typ_id' => $type_1,
+                                'sel_id' => $sel_id,
+                            );
+                    $this->sell->add_price($data_price1);
+                }else{
+                    $data_price1 = array(
+                                'pri_price' => $this->input->post('price_typ1'),
+                                'pri_unit' => $this->input->post('unit_typ1'),
+                            );
+                    $this->manage->update_price2($sel_id,$type_1,$data_price1);
+                }
+                
+            }else{
+                $this->manage->del_price($sel_id,1);
+            }
+            if($type_2 != null){
+                $check_price = $this->manage->check_price($sel_id,$type_2);
+                if($check_price == false){
+                    $data_price2 = array(
+                                'pri_price' => $this->input->post('price_typ2'),
+                                'pri_unit' => $this->input->post('unit_typ2'),
+                                'typ_id' => $type_2,
+                                'sel_id' => $sel_id,
+                            );
+                    $this->sell->add_price($data_price2);
+                }else{
+                    $data_price2 = array(
+                                'pri_price' => $this->input->post('price_typ2'),
+                                'pri_unit' => $this->input->post('unit_typ2'),
+                            );
+                    $this->manage->update_price2($sel_id,$type_2,$data_price2);
+                }
+            }else{
+                $this->manage->del_price($sel_id,2);
+            }
+                
+
             $pic_del = $this->sell->get_pic($sel_id);
 
             foreach ($pic_del as $key) {

@@ -89,7 +89,7 @@ class Sell extends Location {
             $changwat = $name_address['changwat'];
             
             if($type_1 != null && $type_2 != null){
-                $type = 3;
+                $type = 4;
             }
             if($type_1 == null && $type_2 != null){
                 $type = 2;
