@@ -34,6 +34,11 @@
 	    	$id = $this->db->insert_id();
 	    	return $id;
 	    }
+
+	    function add_price($data)
+	    {
+	    	$this->db->insert('nat_price', $data); 
+	    }
 	    
 	    function get_location($id,$type)
 	    {
@@ -88,6 +93,14 @@
 	    function get_pic($id)
 	    {
 	    	$sql = "SELECT * FROM nat_picture WHERE sel_id = ?";
+	    	$query = $this->db->query($sql,array($id));
+	    	return $query->result_array();
+	    }
+
+	    
+	    function get_price($id)
+	    {
+	    	$sql = "SELECT * FROM `nat_price` JOIN nat_type on nat_type.typ_id = nat_price.typ_id WHERE sel_id = ?";
 	    	$query = $this->db->query($sql,array($id));
 	    	return $query->result_array();
 	    }

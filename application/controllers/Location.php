@@ -133,7 +133,8 @@ class Location extends CI_Controller {
 				//$loc_name = $this->get_name_latlng($data['sel_lagitude'],$data['sel_longitude']);
 				$count = $this->sell->get_feed_like($row['sel_id']);
 				$like = $this->sell->get_like($row['sel_id'],$this->session->userdata('mem_id'));
-
+				$price = $this->sell->get_price($row['sel_id']);
+				//var_dump($price);die();
 
 				if ($count == Null){
 					$count[0]['count_like'] = 0;
@@ -147,6 +148,7 @@ class Location extends CI_Controller {
 					'sel_explain' => $row['sel_explain'],
 					'sel_pic' => $row['sel_pic'],
 					'sel_price' => $row['sel_price'],
+					'price' => $price,
 					'sel_time_create' => $row['sel_time_create'],
 					'sel_status' => $row['sel_status'],
 					'dis_val' => $distance,

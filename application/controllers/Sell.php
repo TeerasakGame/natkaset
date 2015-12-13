@@ -38,7 +38,8 @@ class Sell extends Location {
         $cate = $this->input->post('cate');
         $cate2 = $this->input->post('cate2');
         $topic = $this->input->post('topic');
-        $type = $this->input->post('type');
+        $type_1 = $this->input->post('type_1');
+        $type_2 = $this->input->post('type_2');
         $explan = $this->input->post('explan');
        // $pic = $this->input->post('pic');
         $price = $this->input->post('price');
@@ -55,18 +56,19 @@ class Sell extends Location {
 
        // $this->form_validation->set_rules('cate','ชื่อสินค้า', 'required');
         $this->form_validation->set_rules('topic','หัวข้อ','required');
-        $this->form_validation->set_rules('type','ชนิดการขาย','required');
+        //$this->form_validation->set_rules('type','ชนิดการขาย','required');
         $this->form_validation->set_rules('explan','รายละเอียดสินค้า','required');
-        $this->form_validation->set_rules('price','ราคา','required');
+       // $this->form_validation->set_rules('price','ราคา','required');
 
 
         //set div for error 
         $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>', '</div>');
 
         if($this->form_validation->run() == FALSE){
+            //echo $type_1."  ".$type_2;die;
             $this->load->view('default',$data);
         }else{
-
+            //echo $type_1."  ".$type_2;die;
             $mem_id = $this->session->userdata('mem_id');
             
             if($address == 1){
@@ -85,6 +87,16 @@ class Sell extends Location {
             $tambon = $name_address['tambon'];
             $amphoe = $name_address['amphoe'];
             $changwat = $name_address['changwat'];
+            
+            if($type_1 != null && $type_2 != null){
+                $type = 3;
+            }
+            if($type_1 == null && $type_2 != null){
+                $type = 2;
+            }
+            if($type_1 != null && $type_2 == null){
+                $type = 1;
+            }
 
             $data = array(
                 'sel_topic' => $topic,
@@ -106,8 +118,27 @@ class Sell extends Location {
                 );
             
            // print_r($data);
-
+            //echo $type_1."  ".$type_2;die;
             $sel_id = $this->sell->add_sell($data);
+
+            if($type_1 != null){
+                $data_price1 = array(
+                                'pri_price' => $this->input->post('price_typ1'),
+                                'pri_unit' => $this->input->post('unit_typ1'),
+                                'typ_id' => $type_1,
+                                'sel_id' => $sel_id,
+                            );
+                $this->sell->add_price($data_price1);
+            }
+            if($type_2 != null){
+                $data_price2 = array(
+                                'pri_price' => $this->input->post('price_typ2'),
+                                'pri_unit' => $this->input->post('unit_typ2'),
+                                'typ_id' => $type_2,
+                                'sel_id' => $sel_id,
+                            );
+                $this->sell->add_price($data_price2);
+            }
 
             $num = count($_FILES["pic"]["name"]);
             //echo "pic:".$num;
@@ -352,6 +383,7 @@ class Sell extends Location {
        // $id = $this->input->post('id');
         $data['detail'] = $this->sell->get_detail($id);
         $data['pic'] = $this->sell->get_pic($id);
+        $data['price'] = $this->sell->get_price($id);
         $data['contact'] = $this->sell->get_contact($data['detail']['0']['mem_id']);
         $data['resemble'] = $this->sell->get_resemble($data['detail']['0']['sel_id'],$data['detail']['0']['cat_id']);
         $data['like'] = $this->sell->get_like($id,$this->session->userdata('mem_id'));

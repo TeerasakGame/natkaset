@@ -60,32 +60,103 @@
 
 			<div class="form-group">
 		    	<h3><label>ประเภทการประกาศขาย</label></h3>
-		    	<div class="input-group col-xs-12">
+		    	<!--<div class="input-group col-xs-12">
 		    	<?php foreach ($type->result_array() as $row) { ?>
 		    		<label class="radio-inline" >
 		    			<input type="radio" data-toggle="tooltip" data-placement="auto" title="<?php echo $row['typ_explan'];?>" value="<?php echo $row['typ_id'];?>" name="type" required>
 		    			<?php echo $row['typ_name'];?>
 		    		</label>
 		    	<?php } ?>
+				</div>-->
+			
+				<div class="checkbox">
+				  <label><input type="checkbox" id="type_1" name="type_1" data-toggle="tooltip" data-placement="auto" title="" value="1">ขายปลีก</label>
 				</div>
+				<div id="check1">
+					<!--<div class="form-group">
+						<div class="row">
+						<div class="col-xs-6">
+							<div class="input-group">
+								<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ1" placeholder="ราคา เช่น 100" value="" min="0" required>
+								<span class="input-group-addon">บาท</span>
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<center>ต่อ</center>
+						</div>
+						<div class="col-xs-5">
+							<div class="input-group">
+								<input type="text"  class="form-control"  name="unit_typ1" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="" required>
+							</div>
+						</div>
+						</div>
+					</div>-->
+				</div>
+				<div class="checkbox">
+				  <label><input type="checkbox" id="type_2" name="type_2" data-toggle="tooltip" data-placement="auto" title="" value="2">ขายส่ง</label>
+				</div>
+				<div id="check2">
+				</div>
+
+
+				
 			</div>
+			
 
 			<div class="form-group">
 		    	<h3><label>รายละเอียดสินค้า</label></h3>
 		   		<textarea class="form-control" rows="5" placeholder="อธิบายเกี่ยวกับ ขนาด ลักษณะ หรืออื่นๆที่สื่อถึงสินค้า" name="explan" required><?php echo set_value('explan'); ?></textarea>
 			</div>
 
-			<div class="form-group">
+			<!--<div class="form-group">
 			    <h3><label>ราคา</label></h3>
 				<div class="input-group col-xs-8">
 					<input type="number" class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคาต่อ 1 หน่วย" value="<?php echo set_value('price'); ?>" min="0" required>
 					<span class="input-group-addon">บาท</span>
 				</div>
-			</div>
+			</div>-->
 
 	    </div>
 	    </div>
 	    </div>
+	    
+	    <!--<div class="col-md-12">
+		    <div class="thumbnail">
+			    <font color="#278FAF"><h2>
+			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
+			      <b>
+			        โปรโมชั่น
+			      </b>
+			    </h2></font>
+			    <div id="pro">5555</div>
+			    <div class="container-fluid">
+			    	<div class="form-group">
+                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
+                          	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"></textarea>
+                        </div>
+                        <div class="form-group">
+                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
+                           	<div class="row">
+                           		<div class="col-xs-5">
+                           			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
+	                       			</div>
+	                       		<div class="col-xs-1">
+	                       			<center><b> ถึง </b></center>
+	                       		</div>
+	                       		<div class="col-xs-5">
+	                       				<input type="date" class="form-control" name="pro_end" min="<?php echo date('Y-m-d'); ?>">
+	                       		</div>
+                       		</div>
+                       	</div>
+		    	</div>
+		    </div>
+		</div>-->
+</div>
+	 </div>
+
+	 <div class="col-md-6">
+	    <div class="row">
+	    
 	    <div class="col-md-12">
 	    	<div class="thumbnail">
 		    <div role="tab" id="headingTwo">
@@ -135,43 +206,6 @@
 		    </div>
 		    </div>
 		  </div>
-	    <!--<div class="col-md-12">
-		    <div class="thumbnail">
-			    <font color="#278FAF"><h2>
-			      <img src="<?php echo base_url();?>upload/img/Treasure Map-50.png">
-			      <b>
-			        โปรโมชั่น
-			      </b>
-			    </h2></font>
-			    <div id="pro">5555</div>
-			    <div class="container-fluid">
-			    	<div class="form-group">
-                           	<h3><label class="control-label">รายละเอียดโปรโมชั่น</label></h3>
-                          	<textarea class="form-control" rows="3" placeholder="เช่น ซื้อ1แถม1,ฟรีค่าขนส่ง" name="promotion"></textarea>
-                        </div>
-                        <div class="form-group">
-                           	<h3><label class="control-label">ระยะเวลาโปรโมชั่น</label></h3>
-                           	<div class="row">
-                           		<div class="col-xs-5">
-                           			<input type="date" class="form-control" name="pro_start" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
-	                       			</div>
-	                       		<div class="col-xs-1">
-	                       			<center><b> ถึง </b></center>
-	                       		</div>
-	                       		<div class="col-xs-5">
-	                       				<input type="date" class="form-control" name="pro_end" min="<?php echo date('Y-m-d'); ?>">
-	                       		</div>
-                       		</div>
-                       	</div>
-		    	</div>
-		    </div>
-		</div>-->
-</div>
-	 </div>
-
-	 <div class="col-md-6">
-	    <div class="row">
-	    
 
 	    <div class="col-md-12">
 		    <div class="thumbnail">
@@ -372,9 +406,30 @@
 			//$(this).parent(".row form-group div").remove();
 		});
 
-		$("#pro").click(function(){
+		$("#type_1").change(function(){
 			//alert("5555555555")
 			//$("#pro").attr("class", "collapsed glyphicon glyphicon-menu-up");
+			if($(this).is(":checked")) {
+		      // 	alert("checked")
+		       	var html = '<div class="form-group"><div class="row"><div class="col-xs-6"><div class="input-group"><input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ1" placeholder="ราคา เช่น 100" value="" min="0" required><span class="input-group-addon">บาท</span></div></div><div class="col-xs-1"><center>ต่อ</center></div><div class="col-xs-5"><div class="input-group"><input type="text"  class="form-control"  name="unit_typ1" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="" required></div></div></div></div>';
+		    	$("#check1").html(html);
+		    } else {
+		      //  alert("No!! checked")
+		        $("#check1").html("");
+		    }
+		});
+
+		$("#type_2").change(function(){
+			//alert("5555555555")
+			//$("#pro").attr("class", "collapsed glyphicon glyphicon-menu-up");
+			if($(this).is(":checked")) {
+		       //	alert("checked")
+		       	var html = '<div class="form-group"><div class="row"><div class="col-xs-6"><div class="input-group"><input type="number"  class="form-control" aria-describedby="basic-addon2" name="price_typ2" placeholder="ราคา เช่น 100" value="" min="0" required><span class="input-group-addon">บาท</span></div></div><div class="col-xs-1"><center>ต่อ</center></div><div class="col-xs-5"><div class="input-group"><input type="text"  class="form-control"  name="unit_typ2" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="" required></div></div></div></div>';
+		    	$("#check2").html(html);
+		    } else {
+		       // alert("No!! checked")
+		        $("#check2").html("");
+		    }
 		});
 		
 </script>
