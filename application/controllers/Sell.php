@@ -244,7 +244,7 @@ class Sell extends Location {
             $type = $this->input->post('type');
             $explan = $this->input->post('explan');
             $pic_num = $this->input->post('pic_num');
-            $price = $this->input->post('price');
+            //$price = $this->input->post('price');
            
             $lat = $this->input->post('lat_value');
             $lon = $this->input->post('lon_value');
@@ -272,7 +272,7 @@ class Sell extends Location {
                 $data = array(
                     'sel_topic' => $topic,
                     'sel_explain' => $explan,
-                    'sel_price' => $price,
+                    //'sel_price' => $price,
                     'sel_time_create' => date("Y-m-d H:i:s"),
                     'sel_status' => 1,
                     'cat_id' => $cate2,
@@ -288,6 +288,14 @@ class Sell extends Location {
                // print_r($data);
 
                 $sel_id = $this->sell->add_sell($data);
+
+                $data_price = array(
+                                'pri_price' => $this->input->post('price'),
+                                'pri_unit' => $this->input->post('unit'),
+                                'typ_id' => 3,
+                                'sel_id' => $sel_id,
+                            );
+                $this->sell->add_price($data_price);
 
                 $num = count($_FILES["pic"]["name"]);
                 //echo "pic:".$num;
