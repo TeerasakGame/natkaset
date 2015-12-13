@@ -69,7 +69,7 @@ class Manage extends Location {
         if($check == true){
             $data['content_text'] = 'แก้ไขรายละเอียด "'.$data['sell'][0]['sel_topic'].'"';
             $data['type'] = $this->sell->get_type();
-            
+            $data['price']= $this->sell->get_price($sel_id);
             $data['cat_parent'] = $this->manage->get_parent($data['sell'][0]['cat_id']);
             $data['parent'] = $this->manage->get_parent($data['cat_parent'][0]['cat_parent']);
             $data['category_1'] = $this->manage->get_category_not_val($data['parent'][0]['cat_code']);
@@ -95,6 +95,7 @@ class Manage extends Location {
         $type = $this->input->post('type');
         $explan = $this->input->post('explan');
         $price = $this->input->post('price');
+        $unit = $this->input->post('unit');
         $address = $this->input->post('address');
         $promotion = $this->input->post('promotion');
         $pro_start = $this->input->post('pro_start');
@@ -123,7 +124,7 @@ class Manage extends Location {
             $data = array(
                 'sel_topic' => $topic,
                 'sel_explain' => $explan,
-                'sel_price' => $price,
+                //'sel_price' => $price,
                 'sel_time_edit' => date("Y-m-d H:i:s"),
                 'sel_status' => 1,
                 'cat_id' => $cate2,
@@ -140,6 +141,12 @@ class Manage extends Location {
                 );
 
             $this->manage->update_sell($sel_id,$data);
+            $data_price = array(
+                            'pri_price' => $price,
+                            'pri_unit' => $unit, 
+                        );
+            $this->manage->update_price($sel_id,$data_price);
+            
             $pic_del = $this->sell->get_pic($sel_id);
 
             foreach ($pic_del as $key) {

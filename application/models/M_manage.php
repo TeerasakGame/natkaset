@@ -25,6 +25,12 @@
 	    	$this->db->update('nat_sell', $data);
 	    }
 
+	    function update_price($sel_id,$data)
+	    {
+	    	$this->db->where('sel_id',$sel_id) ;
+	    	$this->db->update('nat_price', $data);
+	    }
+
 	    function get_sell_id($sel_id)
 	    {
 	    	$sql = "SELECT * FROM nat_sell JOIN nat_category ON nat_category.cat_code = nat_sell.cat_id WHERE nat_sell.sel_id = ?";

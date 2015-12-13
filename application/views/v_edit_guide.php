@@ -71,9 +71,27 @@
 
 			<div class="form-group">
 			    <h3><label>ราคา</label></h3>
-				<div class="input-group col-xs-8">
+				<!--<div class="input-group col-xs-8">
 					<input type="number" class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคาต่อ 1 หน่วย" value="<?php echo $sell[0]['sel_price']; ?>" min="0" required>
 					<span class="input-group-addon">บาท</span>
+				</div>-->
+				<div class="form-group">
+						<div class="row">
+						<div class="col-xs-6">
+							<div class="input-group">
+								<input type="number"  class="form-control" aria-describedby="basic-addon2" name="price" placeholder="ราคา เช่น 100" value="<?php echo $price[0]['pri_price'];?>" min="0" required>
+								<span class="input-group-addon">บาท</span>
+							</div>
+						</div>
+						<div class="col-xs-1">
+							<center>ต่อ</center>
+						</div>
+						<div class="col-xs-5">
+							<div class="input-group">
+								<input type="text"  class="form-control"  name="unit" placeholder="กิโลกรรม หวี ถุง ฯลฯ" value="<?php echo $price[0]['pri_unit'];?>" required>
+							</div>
+						</div>
+						</div>
 				</div>
 			</div>
 
