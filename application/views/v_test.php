@@ -1,4 +1,4 @@
-<style>
+<!--<style>
     .container{
         margin-top:20px;
     }
@@ -24,7 +24,7 @@
     .image-preview-input-title {
         margin-left:2px;
     }
-</style>
+</style>-->
 <div class="container">
     <div class="row">    
         <div class="col-xs-10">  
