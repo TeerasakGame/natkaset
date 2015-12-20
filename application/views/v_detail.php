@@ -176,14 +176,19 @@
     <div class="col-md-2">
       <h3><b>สินค้าที่ใกล้เคียง</b></h3>
       <?php if($resemble == '' || $resemble == null){echo "ไม่พบสินค้าใกล้เคียง";}?>
+      <center>
       <?php foreach ($resemble as $key) { ?>
-          <h3>
+          
             <a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><img src="<?php echo base_url();?><?php echo $key['sel_pic'];?>" height="50"></a>
+          <br>
+          
             <a href="<?php echo base_url();?>index.php/sell/detail/<?php echo $key['sel_id'];?>"><?php echo $key['sel_topic'];?></a>
-            <hr>
-          </h3>
-      <?php } ?>
+          <hr>
 
+            
+          
+      <?php } ?>
+    </center>
     </div>
 
   </div> 
