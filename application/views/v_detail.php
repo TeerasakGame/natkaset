@@ -137,9 +137,14 @@
               <td class="col-xs-4">ราคา</td>
               <td class="col-xs-8">
                 <?php 
-                  foreach ($price as $key) {
-                    echo $key['typ_name']." ".number_format($key['pri_price']).' '.'บาท/'.$key['pri_unit']."<br>";
+                  if($detail[0]['sel_price'] == null || $detail[0]['sel_price']==""){
+                    foreach ($price as $key) {
+                     echo $key['typ_name']." ".number_format($key['pri_price']).' '.'บาท/'.$key['pri_unit']."<br>";
+                    }
+                  }else{
+                    echo number_format($detail[0]['sel_price'])." บาท";
                   }
+                  
                 ?>
               </td>
             </tr>
