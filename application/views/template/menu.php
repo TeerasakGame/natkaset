@@ -15,6 +15,21 @@
     background-color: #278FAF;
     border-color: #278FAF;
     } 
+
+    .badge {
+    display: inline-block;
+    min-width: 25px;
+    padding: 3px 7px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+    color: #FFF;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #278FAF;
+    border-radius: 9px;
+    }
 </style>
 
 <div id="sidebar-wrapper" style="position: fixed;">
@@ -81,9 +96,25 @@
             <a href="<?php echo base_url(); ?>index.php/sell/guide" id="colerfont"><span class="glyphicon glyphicon-bullhorn"></span>   แนะนำสินค้า</a>
         </li>
         <li>
-            <a href="<?php echo base_url(); ?>index.php/manage/sell" id="colerfont"><span class="glyphicon glyphicon-cog"></span>   จัดการสินค้าที่ประกาศ</a>
+            <a href="<?php echo base_url(); ?>index.php/manage/sell" id="colerfont"><span class="glyphicon glyphicon-cog"></span>   จัดการสินค้า  <span id="time"></span></a>
         </li>
       </ul>
 
 </div>
 
+<script>
+  $.ajax({
+      url:"<?php echo base_url()?>index.php/manage/set_time",
+      //data:"",
+      //type:"POST",
+      success:function(res){
+       //alert(res);
+       var html = res;
+       $('#time').html(html);
+  
+      },
+      error:function(err){
+
+      }
+}); 
+</script>

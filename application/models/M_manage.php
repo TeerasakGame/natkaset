@@ -88,5 +88,12 @@
 	    	$query = $this->db->query($sql,array($sel_id,$typ_id));
 	    }
 
+	    function get_time($mem_id)
+	    {
+	    	$sql = "SELECT COUNT(sel_id) as time FROM nat_sell WHERE DATEDIFF(NOW(),sel_time_create)>30 AND mem_id = ?";
+	    	$query = $this->db->query($sql,array($mem_id));
+	    	return $query->result_array();
+	    }
+
 	}
 ?>

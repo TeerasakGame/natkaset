@@ -246,6 +246,13 @@ class Manage extends Location {
 
     }
 
+    public function set_time()
+    {
+        $mem_id = $this->session->userdata('mem_id');
+        $time = $this->manage->get_time($mem_id);
+        echo '<span class="badge">'.$time[0]['time'].'</span>';
+    }
+
 
 
 }
