@@ -91,7 +91,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
-                        <button class="btn btn-primary" data-dismiss="modal" id="open_sel" value="">ตกลง</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="renew_sel" value="">ตกลง</button>
                     </div>
                 </div>
             </div>
@@ -174,6 +174,17 @@
  
   });
 
+  $("#renew_sel").click(function(){
+    var data = $(this).val();
+    var url = "<?php echo base_url()?>index.php/manage/open_sel/"+data;
+    //alert(url);
+    $.post(url,function(data){  
+      //alert("แจ้งเเมื่อทำการส่งข้อมูลเรียบร้อยแล้ว");  
+      location.reload();
+    });
+ 
+  });
+
 
 
   $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
@@ -187,6 +198,7 @@
 
     $('#close_sel').val(data_id);
     $('#open_sel').val(data_id);
+    $('#renew_sel').val(data_id);
 
   })
 
