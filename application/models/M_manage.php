@@ -3,7 +3,7 @@
 
 		function get_sel_by_id($mem_id)
 	    {
-	    	$sql = "SELECT * FROM nat_sell WHERE mem_id = ? ORDER BY sel_time_create DESC";
+	    	$sql = "SELECT * ,30-DATEDIFF(NOW(),sel_time_create) as time  FROM nat_sell WHERE mem_id = ? ORDER BY sel_time_create DESC";
 	    	$query = $this->db->query($sql,array($mem_id));
 	    	return $query->result_array();
 	    }

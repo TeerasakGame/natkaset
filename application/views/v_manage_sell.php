@@ -25,9 +25,10 @@
       <tr>
         <th width="10%"><center>ลำดับ</center></th>
         <th width="15%"><center>รูป</center></th>
-        <th width="20%"><center>ชื่อหัวข้อ</center></th>
-        <th width="35%"><center>รายละเอียด</center></th>
-        <th width="20%"><center>สถานะ</center></th>
+        <th width="15%"><center>ชื่อหัวข้อสินค้า</center></th>
+        <th width="30%"><center>รายละเอียด</center></th>
+        <th width="15%"><center>ระยะเวลาคงเหลือของสินค้า</center></th>
+        <th width="15%"><center>สถานะ</center></th>
       </tr>
     </thead>
     <tbody>
@@ -46,6 +47,7 @@
             <li>ที่อยู่สินค้า : <?php echo $row['sel_tambon']." ".$row['sel_amphoe']." ".$row['sel_changwat']?></li>
           </ul>
         </td>
+        <td><center><?php if($row['time'] < 0 ){ echo "หมดเวลาการขาย";}else{echo $row['time']." วัน";}?></center></td>
         <td align = "center"><a href="<?php echo base_url();?>index.php/manage/edit_sell/<?php echo $row['sel_id']?>">แก้ไข</a> | <?php if($row['sel_status']==1){?>
           <a href="" data-toggle="modal" data-target="#del" data-id="<?php echo $row['sel_id']?>">ปิดการขาย</a>
           <?php }else{ ?>
