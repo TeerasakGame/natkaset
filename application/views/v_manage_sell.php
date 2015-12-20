@@ -47,12 +47,30 @@
             <li>ที่อยู่สินค้า : <?php echo $row['sel_tambon']." ".$row['sel_amphoe']." ".$row['sel_changwat']?></li>
           </ul>
         </td>
-        <td><center><?php if($row['time'] < 0 ){ echo "หมดเวลาการขาย";}else{echo $row['time']." วัน";}?></center></td>
-        <td align = "center"><a href="<?php echo base_url();?>index.php/manage/edit_sell/<?php echo $row['sel_id']?>">แก้ไข</a> | <?php if($row['sel_status']==1){?>
+        <td><center>
+          <?php 
+                if($row['time'] < 0 ){ 
+                  echo "หมดเวลาการขาย";
+                }else{
+                  if($row['sel_status'] == 0){
+                    echo "ปิดการขาย";
+                  }else{
+                    echo $row['time']." วัน";
+                  }
+                  
+                }?>
+        </center></td>
+        <td align = "center">
+          <?php if($row['time'] < 0 ){ ?>
+            <a href="" data-toggle="modal" data-target="#renew" data-id="<?php echo $row['sel_id']?>">ต่อเวลาการขาย</a>
+          <?php }else{?>
+          <a href="<?php echo base_url();?>index.php/manage/edit_sell/<?php echo $row['sel_id']?>">แก้ไข</a> | <?php if($row['sel_status']==1){?>
           <a href="" data-toggle="modal" data-target="#del" data-id="<?php echo $row['sel_id']?>">ปิดการขาย</a>
           <?php }else{ ?>
           <a href="" data-toggle="modal" data-target="#open" data-id="<?php echo $row['sel_id']?>">เปิดการขาย</a>
-          <?php } ?></td>
+          <?php } }?>
+
+        </td>
       </tr>
     <?php $i++ ;} ?>
     </tbody>
@@ -60,6 +78,24 @@
 
 
 </div>
+        <div class="modal fade" id="renew" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title"><b>ยืนยันเการต่ออายุ</b></h3>
+                    </div>
+                    <div class="modal-body">
+                      <center>คุณต้องการเต่ออายุสินค้าอีก 30 วัน<center>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="open_sel" value="">ตกลง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="del" role="dialog">
             <div class="modal-dialog modal-lg">

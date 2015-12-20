@@ -52,6 +52,7 @@ class Manage extends Location {
     		$data = array(
     					'sel_status' => 1, 
     					'sel_time_edit' => date("Y-m-d H:i:s"),
+                        'sel_time_create' => date("Y-m-d H:i:s"),
     				);
     		$this->manage->update_sell($sel_id,$data);
     		redirect('manage/sell');
