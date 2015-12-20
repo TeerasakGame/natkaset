@@ -254,7 +254,7 @@ class Manage extends Location {
         if( $time[0]['time'] <= 0 ){
             echo null;
         }else{
-            echo '<span class="badge">'.$time[0]['time'].'</span>';
+            echo '<span class="badge pull-right" data-toggle="tooltip" title="หมดเวลาการขาย">'.$time[0]['time'].'</span>';
         }
         
     }

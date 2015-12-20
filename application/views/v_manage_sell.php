@@ -50,7 +50,12 @@
         <td><center>
           <?php 
                 if($row['time'] < 0 ){ 
-                  echo "หมดเวลาการขาย";
+                  if($row['sel_status']==1){
+                    echo "หมดเวลาการขาย";
+                  }else{
+                    echo "ปิดการขาย";
+                  }
+                  
                 }else{
                   if($row['sel_status'] == 0){
                     echo "ปิดการขาย";
@@ -61,8 +66,8 @@
                 }?>
         </center></td>
         <td align = "center">
-          <?php if($row['time'] < 0 ){ ?>
-            <a href="" data-toggle="modal" data-target="#renew" data-id="<?php echo $row['sel_id']?>">ต่อเวลาการขาย</a>
+          <?php if($row['time'] < 0 && $row['sel_status']==1){ ?>
+            <a href="" data-toggle="modal" data-target="#renew" data-id="<?php echo $row['sel_id']?>">ต่อเวลาการขาย</a> | <a href="" data-toggle="modal" data-target="#del" data-id="<?php echo $row['sel_id']?>">ปิดการขาย</a>
           <?php }else{?>
           <a href="<?php echo base_url();?>index.php/manage/edit_sell/<?php echo $row['sel_id']?>">แก้ไข</a> | <?php if($row['sel_status']==1){?>
           <a href="" data-toggle="modal" data-target="#del" data-id="<?php echo $row['sel_id']?>">ปิดการขาย</a>
