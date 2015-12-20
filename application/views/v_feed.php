@@ -107,9 +107,15 @@ echo "</pre>";*/
                               <td class="col-xs-8">
                                 <!--<FONT SIZE=4><?php echo number_format($key['sel_price']);?></FONT>&nbsp&nbsp บาท-->
                                 <?php 
-                                  foreach ($key['price'] as $key2) {
-                                    echo $key2['typ_name']." ".number_format($key2['pri_price']).' '.'บาท/'.$key2['pri_unit']."<br>";
-                                  }
+                                  if($key['sel_price'] == null || $key['sel_price']==""){
+                                      foreach ($key['price'] as $key2) {
+                                        echo $key2['typ_name']."<FONT SIZE=4> ".number_format($key2['pri_price']).' '.'</FONT>บาท/'.$key2['pri_unit']."<br>";
+                                      }
+                                    }else{
+                                      echo "<FONT SIZE=4> ".number_format($key['sel_price'])."</FONT>&nbsp&nbsp บาท";
+                                    }
+                                  
+                                  
                                 ?>
                               </td>
                             </tr>
@@ -237,7 +243,20 @@ echo "</pre>";*/
                             <?php } ?>
                             <tr>
                               <td class="col-xs-4"><b>ราคา</b></td>
-                              <td class="col-xs-8"><FONT SIZE=4><?php echo number_format($key['sel_price']);?></FONT>&nbsp&nbsp บาท</td>
+                              <td class="col-xs-8">
+                                <!--<FONT SIZE=4><?php echo number_format($key['sel_price']);?></FONT>&nbsp&nbsp บาท-->
+                                <?php 
+                                  if($key['sel_price'] == null || $key['sel_price']==""){
+                                      foreach ($key['price'] as $key2) {
+                                        echo $key2['typ_name']."<FONT SIZE=4> ".number_format($key2['pri_price']).' '.'</FONT>บาท/'.$key2['pri_unit']."<br>";
+                                      }
+                                    }else{
+                                      echo "<FONT SIZE=4> ".number_format($key['sel_price'])."</FONT>&nbsp&nbsp บาท";
+                                    }
+                                  
+                                  
+                                ?>
+                              </td>
                             </tr>
                             <tr>
                               <td class="col-xs-4"><b>ระยะทางโดยประมาณ</b></td>
@@ -307,7 +326,20 @@ echo "</pre>";*/
                             <?php } ?>
                             <tr>
                               <td class="col-xs-4"><b>ราคา</b></td>
-                              <td class="col-xs-8"><FONT SIZE=4><?php echo number_format($key['sel_price']);?></FONT>&nbsp&nbsp บาท</td>
+                              <td class="col-xs-8"><FONT SIZE=4>
+                                <!--<?php echo number_format($key['sel_price']);?></FONT>&nbsp&nbsp บาท-->
+                                <?php 
+                                  if($key['sel_price'] == null || $key['sel_price']==""){
+                                      foreach ($key['price'] as $key2) {
+                                        echo $key2['typ_name']."<FONT SIZE=4> ".number_format($key2['pri_price']).' '.'</FONT>บาท/'.$key2['pri_unit']."<br>";
+                                      }
+                                    }else{
+                                      echo "<FONT SIZE=4> ".number_format($key['sel_price'])."</FONT>&nbsp&nbsp บาท";
+                                    }
+                                  
+                                  
+                                ?>
+                              </td>
                             </tr>
                             <tr>
                               <td class="col-xs-4"><b>ระยะทางโดยประมาณ</b></td>
