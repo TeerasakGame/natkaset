@@ -250,7 +250,12 @@ class Manage extends Location {
     {
         $mem_id = $this->session->userdata('mem_id');
         $time = $this->manage->get_time($mem_id);
-        echo '<span class="badge">'.$time[0]['time'].'</span>';
+        if( $time[0]['time'] <= 0 ){
+            echo null;
+        }else{
+            echo '<span class="badge">'.$time[0]['time'].'</span>';
+        }
+        
     }
 
 
